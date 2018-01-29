@@ -1,10 +1,7 @@
-﻿using SQLite;
-
-namespace PassTheBarier.Core.Data.Entities
+﻿namespace PassTheBarier.Core.Models
 {
-    public class Contact
+    public class ContactModel
     {
-        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
         public string Name { get; set; }

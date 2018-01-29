@@ -225,9 +225,9 @@
     <Folder Include="Resources\mipmap-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PassTheBarier.Core\PassTheBarier.Core.csproj">
+    <ProjectReference Include="..\PassTheBarier.Core\PassTheBarrier.Core.csproj">
       <Project>{e7df68f3-6fe4-4a05-aeba-ff755df4c5e4}</Project>
-      <Name>PassTheBarier.Core</Name>
+      <Name>PassTheBarrier.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

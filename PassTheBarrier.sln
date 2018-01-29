@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassTheBarrier.Droid", "PassTheBarrier\PassTheBarrier.Droid.csproj", "{87A4681E-AF3E-4454-95FA-8E68DD5B78F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassTheBarier.Core", "PassTheBarier.Core\PassTheBarier.Core.csproj", "{E7DF68F3-6FE4-4A05-AEBA-FF755DF4C5E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassTheBarrier.Core", "PassTheBarier.Core\PassTheBarrier.Core.csproj", "{E7DF68F3-6FE4-4A05-AEBA-FF755DF4C5E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
