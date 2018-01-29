@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <style name="PassTheBarrier.Base" parent="Theme.AppCompat.Light.NoActionBar">
+
+  </style>
+
+  <style name="PassTheBarrier.Main" parent="PassTheBarrier.Base">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="android:windowBackground">@android:color/white</item>
+  </style>
+
+  <style name="PassTheBarrier.Splash" parent="PassTheBarrier.Base">
+    <item name="android:windowBackground">@drawable/splash_centered</item>
+    <item name="android:windowNoTitle">true</item>
+  </style>
+
+  <style name="Toolbar">
+    <item name="android:layout_height">?attr/actionBarSize</item>
+    <item name="android:background">?attr/colorPrimary</item>
+  </style>
+
+  <style name="PassTheBarrier.ThemeToolbarNavigationView" parent="">
+    <item name="android:listDivider">@color/colorPrimaryDark</item>
+  </style>
+</resources>
