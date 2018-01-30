@@ -6,7 +6,7 @@ namespace PassTheBarier.Core.Data
     {
         public SQLiteConnection GetConnection(string databaseName)
         {
-            var connectionString = new SQLiteConnectionString(databaseName, true);
+            var connectionString = new SQLiteConnectionString(databaseName, false);
             var connection = new SQLiteConnectionWithLock(connectionString, SQLiteOpenFlags.ReadWrite);
 
             return connection;
@@ -14,7 +14,7 @@ namespace PassTheBarier.Core.Data
 
         public SQLiteAsyncConnection GetAsyncConnection(string databaseName)
         {
-            var connection = new SQLiteAsyncConnection(databaseName);
+            var connection = new SQLiteAsyncConnection(databaseName, false);
 
             return connection;
         }

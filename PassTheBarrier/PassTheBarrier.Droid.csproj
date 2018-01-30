@@ -175,6 +175,7 @@
     <Compile Include="Fragments\AddressBookFragment.cs" />
     <Compile Include="Fragments\BarrierFragment.cs" />
     <Compile Include="Fragments\BaseFragment.cs" />
+    <Compile Include="Fragments\ContactFragment.cs" />
     <Compile Include="Fragments\HomeFragment.cs" />
     <Compile Include="Fragments\MenuFragment.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -208,6 +209,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\toolbar_actionbar.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ContactView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

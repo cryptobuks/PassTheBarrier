@@ -1,40 +1,40 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using PassTheBarier.Core.Data.Repositories.Interfaces;
 using PassTheBarier.Core.Logic.Interfaces;
-using PassTheBarier.Core.Models;
+using PassTheBarier.Core.Logic.Mappers;
+using PassTheBarier.Core.Logic.Models;
 
 namespace PassTheBarier.Core.Logic.Implementations
 {
     public class ContactLogic : IContactLogic
     {
-        private IContactRepository _contactRepository;
+        private readonly IContactRepository _contactRepository;
 
         public ContactLogic(IContactRepository contactRepository)
         {
             _contactRepository = contactRepository;
         }
 
-        public IEnumerable<ContactModel> GetAll()
+        public async Task<IEnumerable<ContactModel>> GetAll()
+        {
+            var contacts = await _contactRepository.GetAllAsync();
+
+            return contacts.Select(ContactMapper.ToContact);
+        }
+
+        public Task Add(ContactModel contact)
         {
             throw new System.NotImplementedException();
         }
 
-        public ContactModel GetById(int id)
+        public Task Update(int id, ContactModel contact)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Add(ContactModel contact)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Update(int id, ContactModel contact)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Delete(int id)
+        public Task Delete(int id)
         {
             throw new System.NotImplementedException();
         }

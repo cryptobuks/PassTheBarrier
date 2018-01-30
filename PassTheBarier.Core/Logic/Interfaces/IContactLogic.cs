@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
-using PassTheBarier.Core.Models;
+using System.Threading.Tasks;
+using PassTheBarier.Core.Logic.Models;
 
 namespace PassTheBarier.Core.Logic.Interfaces
 {
     public interface IContactLogic
     {
-        IEnumerable<ContactModel> GetAll();
+        Task<IEnumerable<ContactModel>> GetAll();
 
-        ContactModel GetById(int id);
+        Task Add(ContactModel contact);
 
-        void Add(ContactModel contact);
+        Task Update(int id, ContactModel contact);
 
-        void Update(int id, ContactModel contact);
-
-        void Delete(int id);
+        Task Delete(int id);
     }
 }

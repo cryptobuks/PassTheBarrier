@@ -1,4 +1,4 @@
-﻿namespace PassTheBarier.Core.Models
+﻿namespace PassTheBarier.Core.Logic.Models
 {
     public class ContactModel
     {

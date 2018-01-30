@@ -2,7 +2,12 @@
 
 namespace PassTheBarier.Core.ViewModels
 {
-    public class BaseViewModel : MvxViewModel
+    public abstract class BaseViewModel : MvxViewModel
+    {
+
+    }
+
+    public abstract class BaseViewModel<T> : MvxViewModel<T>
     {
 
     }

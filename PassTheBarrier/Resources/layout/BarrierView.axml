@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:local="http://schemas.android.com/apk/res-auto"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent">
-  <include
-    layout="@layout/toolbar_actionbar" />
-
-  <RelativeLayout
+    xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    local:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-    <TextView
-      android:text="Barrier"
-      android:textAppearance="?android:attr/textAppearanceMedium"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/aboutText"
-      android:gravity="left"
-      android:paddingTop="20dp" />
-
-  </RelativeLayout>
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/toolbar_actionbar" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        local:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <TextView
+            android:text="Barrier"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/aboutText"
+            android:gravity="left"
+            android:paddingTop="20dp" />
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

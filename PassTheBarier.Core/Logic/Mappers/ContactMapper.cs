@@ -1,5 +1,5 @@
 ﻿using PassTheBarier.Core.Data.Entities;
-using PassTheBarier.Core.Models;
+using PassTheBarier.Core.Logic.Models;
 
 namespace PassTheBarier.Core.Logic.Mappers
 {
