@@ -8,9 +8,11 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
+using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.RecyclerView;
+using PassTheBarrier.MvxBindings;
 
 namespace PassTheBarrier
 {
@@ -35,7 +37,20 @@ namespace PassTheBarrier
             typeof(ViewPager).Assembly,
             typeof(MvxRecyclerView).Assembly,
             typeof(MvxSwipeRefreshLayout).Assembly,
+            typeof(FloatingActionButton).Assembly
         };
+
+        /// <summary>
+        /// Fill the Binding Factory Registry with bindings from the support library.
+        /// </summary>
+        protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        {
+            MvxAppCompatSetupHelper.FillTargetFactories(registry);
+            base.FillTargetFactories(registry);
+
+            registry.RegisterFactory(new MvxCustomBindingFactory<SwipeRefreshLayout>("IsRefreshing", 
+                (swipeRefreshLayout) => new SwipeRefreshLayoutIsRefreshingTargetBinding(swipeRefreshLayout)));
+        }
 
         protected override IMvxAndroidViewPresenter CreateViewPresenter()
         {

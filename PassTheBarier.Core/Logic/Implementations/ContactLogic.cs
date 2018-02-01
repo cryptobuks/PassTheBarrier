@@ -20,8 +20,34 @@ namespace PassTheBarier.Core.Logic.Implementations
         public async Task<IEnumerable<ContactModel>> GetAll()
         {
             var contacts = await _contactRepository.GetAllAsync();
+            var contactModels = contacts.Select(ContactMapper.ToContact).ToList();
 
-            return contacts.Select(ContactMapper.ToContact);
+            contactModels.Add(new ContactModel
+            {
+                Id = 1,
+                Name = "Vlad Trenea",
+                Number = "0742606519"
+            });
+            contactModels.Add(new ContactModel
+            {
+                Id = 2,
+                Name = "AAAAAA",
+                Number = "0742606519"
+            });
+            contactModels.Add(new ContactModel
+            {
+                Id =3,
+                Name = "BBBB",
+                Number = "0742606519"
+            });
+            contactModels.Add(new ContactModel
+            {
+                Id = 4,
+                Name = "CCCCC",
+                Number = "0742606519"
+            });
+
+            return contactModels;
         }
 
         public Task Add(ContactModel contact)

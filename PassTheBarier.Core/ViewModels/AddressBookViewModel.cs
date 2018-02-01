@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using PassTheBarier.Core.Logic.Interfaces;
@@ -14,12 +13,16 @@ namespace PassTheBarier.Core.ViewModels
 
         //Commands
         public IMvxCommand<ContactModel> ContactSelectedCommand { get; private set; }
+        public IMvxCommand RefreshContactsCommand { get; private set; }
+        public IMvxCommand FetchContactsCommand { get; private set; }
 
         //Tasks
         public MvxNotifyTask LoadContactsTask { get; private set; }
+        public MvxNotifyTask FetchContactsTask { get; private set; }
 
         //Properties
         private MvxObservableCollection<ContactModel> _contacts;
+
         public MvxObservableCollection<ContactModel> Contacts
         {
             get { return _contacts; }
@@ -38,11 +41,20 @@ namespace PassTheBarier.Core.ViewModels
             Contacts = new MvxObservableCollection<ContactModel>();
 
             ContactSelectedCommand = new MvxAsyncCommand<ContactModel>(ContactSelected);
+
+            FetchContactsCommand = new MvxCommand(
+                () =>
+                {
+                    FetchContactsTask = MvxNotifyTask.Create(LoadContacts);
+                    RaisePropertyChanged(() => FetchContactsTask);
+                });
+            RefreshContactsCommand = new MvxCommand(RefreshContacts);
         }
 
         public override Task Initialize()
         {
             LoadContactsTask = MvxNotifyTask.Create(LoadContacts);
+            RaisePropertyChanged(() => LoadContactsTask);
 
             return Task.FromResult(0);
         }
@@ -51,6 +63,12 @@ namespace PassTheBarier.Core.ViewModels
         {
             var contacts = await _contactLogic.GetAll();
             Contacts.AddRange(contacts);
+        }
+
+        private void RefreshContacts()
+        {
+            LoadContactsTask = MvxNotifyTask.Create(LoadContacts);
+            RaisePropertyChanged(() => LoadContactsTask);
         }
 
         private async Task ContactSelected(ContactModel selectedContact)
