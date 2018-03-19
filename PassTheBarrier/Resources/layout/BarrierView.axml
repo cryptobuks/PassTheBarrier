@@ -6,16 +6,39 @@
     <include
         layout="@layout/toolbar_actionbar" />
     <RelativeLayout
+        android:id="@+id/barrierMainView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         local:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <TextView
-            android:text="Barrier"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/barrierEditableView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/aboutText"
-            android:gravity="left"
-            android:paddingTop="20dp" />
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/barrierNumberTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Number"
+                style="@style/PassTheBarrier.PrimaryText" />
+            <EditText
+                android:id="@+id/barrierNumberEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                style="@style/PassTheBarrier.EditText"
+                android:selectAllOnFocus="true"
+                local:MvxBind="Text Barrier.Number, Mode=TwoWay" />
+
+            <Button
+                android:id="@+id/barrierSaveBtn"
+                android:layout_width="150dp"
+                android:layout_height="36dp"
+                style="@style/PassTheBarrier.Button"
+                android:layout_gravity="center_horizontal"
+                android:text="SAVE"
+                local:MvxBind="Click SaveBarrierCommand"/>
+        </LinearLayout>
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

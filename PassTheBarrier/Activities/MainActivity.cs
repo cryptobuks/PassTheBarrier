@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Support.V4.View;
@@ -6,6 +7,8 @@ using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Views.InputMethods;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Platform;
+using MvvmCross.Platform.Droid.Platform;
 using PassTheBarier.Core.ViewModels;
 
 namespace PassTheBarrier.Activities
@@ -24,8 +27,9 @@ namespace PassTheBarrier.Activities
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.MainView);
+			UserDialogs.Init(() => Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity);
 
-            DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+			DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
 
             if (bundle == null)
             {
