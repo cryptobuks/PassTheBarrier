@@ -1,12 +1,18 @@
 ﻿using SQLite;
+using System.IO;
 
 namespace PassTheBarier.Core.Data
 {
     public class SqliteConnectionFactory : ISqliteConnectionFactory
     {
+		public SqliteConnectionFactory()
+		{
+
+		}
+
         public SQLiteConnection GetConnection(string databaseName)
         {
-            var connectionString = new SQLiteConnectionString(databaseName, false);
+			var connectionString = new SQLiteConnectionString(GetDbPath(databaseName), false);
             var connection = new SQLiteConnectionWithLock(connectionString, SQLiteOpenFlags.ReadWrite);
 
             return connection;
@@ -14,9 +20,16 @@ namespace PassTheBarier.Core.Data
 
         public SQLiteAsyncConnection GetAsyncConnection(string databaseName)
         {
-            var connection = new SQLiteAsyncConnection(databaseName, false);
+			var connection = new SQLiteAsyncConnection(GetDbPath(databaseName), false);
 
             return connection;
         }
+
+		private string GetDbPath(string databaseName)
+		{
+			return Path.Combine(System.Environment.
+			  GetFolderPath(System.Environment.
+			  SpecialFolder.Personal), databaseName);
+		}
     }
 }

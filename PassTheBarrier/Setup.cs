@@ -13,6 +13,8 @@ using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using PassTheBarrier.MvxBindings;
+using MvvmCross.Platform;
+using PassTheBarier.Core.Data;
 
 namespace PassTheBarrier
 {
@@ -56,5 +58,10 @@ namespace PassTheBarrier
         {
             return new MvxAppCompatViewPresenter(AndroidViewAssemblies);
         }
-    }
+
+		protected override void InitializeFirstChance()
+		{
+			Mvx.RegisterType<ISqliteConnectionFactory, SqliteConnectionFactory>();
+		}
+	}
 }

@@ -708,7 +708,13 @@ namespace PassTheBarrier
 			global::MvvmCross.Droid.Support.Design.Resource.Drawable.abc_textfield_search_material = global::PassTheBarrier.Resource.Drawable.abc_textfield_search_material;
 			global::MvvmCross.Droid.Support.Design.Resource.Drawable.abc_vector_test = global::PassTheBarrier.Resource.Drawable.abc_vector_test;
 			global::MvvmCross.Droid.Support.Design.Resource.Drawable.avd_hide_password = global::PassTheBarrier.Resource.Drawable.avd_hide_password;
+			global::MvvmCross.Droid.Support.Design.Resource.Drawable.avd_hide_password_1 = global::PassTheBarrier.Resource.Drawable.avd_hide_password_1;
+			global::MvvmCross.Droid.Support.Design.Resource.Drawable.avd_hide_password_2 = global::PassTheBarrier.Resource.Drawable.avd_hide_password_2;
+			global::MvvmCross.Droid.Support.Design.Resource.Drawable.avd_hide_password_3 = global::PassTheBarrier.Resource.Drawable.avd_hide_password_3;
 			global::MvvmCross.Droid.Support.Design.Resource.Drawable.avd_show_password = global::PassTheBarrier.Resource.Drawable.avd_show_password;
+			global::MvvmCross.Droid.Support.Design.Resource.Drawable.avd_show_password_1 = global::PassTheBarrier.Resource.Drawable.avd_show_password_1;
+			global::MvvmCross.Droid.Support.Design.Resource.Drawable.avd_show_password_2 = global::PassTheBarrier.Resource.Drawable.avd_show_password_2;
+			global::MvvmCross.Droid.Support.Design.Resource.Drawable.avd_show_password_3 = global::PassTheBarrier.Resource.Drawable.avd_show_password_3;
 			global::MvvmCross.Droid.Support.Design.Resource.Drawable.design_bottom_navigation_item_background = global::PassTheBarrier.Resource.Drawable.design_bottom_navigation_item_background;
 			global::MvvmCross.Droid.Support.Design.Resource.Drawable.design_fab_background = global::PassTheBarrier.Resource.Drawable.design_fab_background;
 			global::MvvmCross.Droid.Support.Design.Resource.Drawable.design_ic_visibility = global::PassTheBarrier.Resource.Drawable.design_ic_visibility;
@@ -2540,7 +2546,13 @@ namespace PassTheBarrier
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.abc_textfield_search_material = global::PassTheBarrier.Resource.Drawable.abc_textfield_search_material;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.abc_vector_test = global::PassTheBarrier.Resource.Drawable.abc_vector_test;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_hide_password = global::PassTheBarrier.Resource.Drawable.avd_hide_password;
+			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_hide_password_1 = global::PassTheBarrier.Resource.Drawable.avd_hide_password_1;
+			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_hide_password_2 = global::PassTheBarrier.Resource.Drawable.avd_hide_password_2;
+			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_hide_password_3 = global::PassTheBarrier.Resource.Drawable.avd_hide_password_3;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_show_password = global::PassTheBarrier.Resource.Drawable.avd_show_password;
+			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_show_password_1 = global::PassTheBarrier.Resource.Drawable.avd_show_password_1;
+			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_show_password_2 = global::PassTheBarrier.Resource.Drawable.avd_show_password_2;
+			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_show_password_3 = global::PassTheBarrier.Resource.Drawable.avd_show_password_3;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.design_bottom_navigation_item_background = global::PassTheBarrier.Resource.Drawable.design_bottom_navigation_item_background;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.design_fab_background = global::PassTheBarrier.Resource.Drawable.design_fab_background;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.design_ic_visibility = global::PassTheBarrier.Resource.Drawable.design_ic_visibility;
@@ -5850,8 +5862,26 @@ namespace PassTheBarrier
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
+			// aapt resource value: 0x7f02006d
+			public const int avd_hide_password_1 = 2130837613;
+			
+			// aapt resource value: 0x7f02006e
+			public const int avd_hide_password_2 = 2130837614;
+			
+			// aapt resource value: 0x7f02006f
+			public const int avd_hide_password_3 = 2130837615;
+			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
+			
+			// aapt resource value: 0x7f020070
+			public const int avd_show_password_1 = 2130837616;
+			
+			// aapt resource value: 0x7f020071
+			public const int avd_show_password_2 = 2130837617;
+			
+			// aapt resource value: 0x7f020072
+			public const int avd_show_password_3 = 2130837618;
 			
 			// aapt resource value: 0x7f020055
 			public const int barrier_icon = 2130837589;
