@@ -23,6 +23,7 @@ namespace PassTheBarier.Core
 
         private void InitializeLogic()
         {
+	        Mvx.RegisterType<IModalLogic, ModalLogic>();
             Mvx.RegisterType<IContactLogic, ContactLogic>();
 			Mvx.RegisterType<IBarrierLogic, BarrierLogic>();
 		}

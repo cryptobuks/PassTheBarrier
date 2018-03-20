@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                  xmlns:local="http://schemas.android.com/apk/res-auto"
                                                  android:layout_width="match_parent"
@@ -6,16 +7,55 @@
   <include
     layout="@layout/toolbar_actionbar" />
   <RelativeLayout
+    android:id="@+id/contactMainView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    local:layout_behavior="@string/appbar_scrolling_view_behavior">
-    <TextView
-      android:text="Contact"
-      android:textAppearance="?android:attr/textAppearanceMedium"
-      android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+    <LinearLayout
+      android:id="@+id/contactEditableView"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/aboutText"
-      android:gravity="left"
-      android:paddingTop="20dp" />
+      android:layout_centerVertical="true"
+      android:orientation="vertical">
+      <TextView
+        android:id="@+id/contactNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Name"
+        style="@style/PassTheBarrier.PrimaryText" />
+      <EditText
+        android:id="@+id/contactNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        style="@style/PassTheBarrier.EditText"
+        android:selectAllOnFocus="true"
+        local:MvxBind="Text Contact.Name, Mode=TwoWay" />
+
+      <TextView
+        android:id="@+id/contactNumberTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Number"
+        style="@style/PassTheBarrier.PrimaryText" />
+      <EditText
+        android:id="@+id/contactNumberEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        style="@style/PassTheBarrier.EditText"
+        android:selectAllOnFocus="true"
+        local:MvxBind="Text Contact.Number, Mode=TwoWay" />
+      <Button
+        android:id="@+id/contactSaveBtn"
+        android:layout_width="150dp"
+        android:layout_height="36dp"
+        android:background="@drawable/button_border"
+        style="@style/PassTheBarrier.Button"
+        android:layout_gravity="center_horizontal"
+        android:text="SAVE"
+        local:MvxBind="Click SaveContactCommand" />
+    </LinearLayout>
   </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

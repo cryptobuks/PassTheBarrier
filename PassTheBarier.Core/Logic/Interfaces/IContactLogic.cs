@@ -6,12 +6,12 @@ namespace PassTheBarier.Core.Logic.Interfaces
 {
     public interface IContactLogic
     {
-        Task<IEnumerable<ContactModel>> GetAll();
+        Task<IEnumerable<ContactModel>> GetAllAsync();
 
-        Task Add(ContactModel contact);
+        Task AddAsync(ContactModel contact);
 
-        Task Update(int id, ContactModel contact);
+        Task UpdateAsync(ContactModel contact);
 
-        Task Delete(int id);
+        Task DeleteAsync(int id);
     }
 }

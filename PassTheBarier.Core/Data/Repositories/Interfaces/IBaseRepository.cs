@@ -21,5 +21,13 @@ namespace PassTheBarier.Core.Data.Repositories.Interfaces
 		void Update(T entity);
 
 		Task UpdateAsync(T entity);
+
+	    void DeleteEntity(T entity);
+
+	    Task DeleteEntityAsync(T entity);
+
+		void DeleteById(int id);
+
+	    Task DeleteByIdAsync(int id);
     }
 }

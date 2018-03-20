@@ -10,7 +10,7 @@ namespace PassTheBarier.Core.Logic.Implementations
 {
 	public class BarrierLogic : IBarrierLogic
 	{
-		private ISettingRepository _settingRepository;
+		private readonly ISettingRepository _settingRepository;
 
 		public BarrierLogic(ISettingRepository settingRepository)
 		{

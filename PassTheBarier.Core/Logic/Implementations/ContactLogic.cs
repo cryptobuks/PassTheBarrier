@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using PassTheBarier.Core.Data.Repositories.Interfaces;
+using PassTheBarier.Core.Logic.Exceptions;
 using PassTheBarier.Core.Logic.Interfaces;
 using PassTheBarier.Core.Logic.Mappers;
 using PassTheBarier.Core.Logic.Models;
@@ -17,10 +18,10 @@ namespace PassTheBarier.Core.Logic.Implementations
             _contactRepository = contactRepository;
         }
 
-        public async Task<IEnumerable<ContactModel>> GetAll()
+        public async Task<IEnumerable<ContactModel>> GetAllAsync()
         {
             var contacts = await _contactRepository.GetAllAsync();
-            var contactModels = contacts.Select(ContactMapper.ToContact).ToList();
+            var contactModels = contacts.Select(ContactMapper.ToModel).ToList();
 
             contactModels.Add(new ContactModel
             {
@@ -50,19 +51,44 @@ namespace PassTheBarier.Core.Logic.Implementations
             return contactModels;
         }
 
-        public Task Add(ContactModel contact)
+        public async Task AddAsync(ContactModel contactModel)
         {
-            throw new System.NotImplementedException();
+	        var contactWithName = await _contactRepository.GetByNameAsync(contactModel.Name);
+	        if (contactWithName != null)
+	        {
+				throw new ValidationException("A contact with that name already exists.");
+	        }
+
+	        await _contactRepository.AddAsync(ContactMapper.ToEntity(contactModel));
         }
 
-        public Task Update(int id, ContactModel contact)
+        public async Task UpdateAsync(ContactModel contactModel)
         {
-            throw new System.NotImplementedException();
+	        var contact = await _contactRepository.GetByIdAsync(contactModel.Id);
+	        var contactWithName = await _contactRepository.GetByNameAsync(contactModel.Name);
+
+	        if (contact == null)
+	        {
+				throw new NotFoundException("Contact not found");
+	        }
+
+	        if (contact.Id != contactWithName.Id)
+	        {
+				throw new ValidationException("A contact with that name already exists");
+	        }
+
+			await _contactRepository.UpdateAsync(ContactMapper.ToEntity(contactModel));
         }
 
-        public Task Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new System.NotImplementedException();
+	        var contact = await _contactRepository.GetByIdAsync(id);
+	        if (contact == null)
+	        {
+				throw new NotFoundException("Contact not found");
+	        }
+
+	        await _contactRepository.DeleteEntityAsync(contact);
         }
     }
 }

@@ -61,8 +61,8 @@ namespace PassTheBarier.Core.ViewModels
 
         private async Task LoadContacts()
         {
-            var contacts = await _contactLogic.GetAll();
-            Contacts.AddRange(contacts);
+            var contacts = await _contactLogic.GetAllAsync();
+            Contacts.ReplaceWith(contacts);
         }
 
         private void RefreshContacts()

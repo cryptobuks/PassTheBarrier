@@ -50,10 +50,14 @@
     <Compile Include="Data\Repositories\Interfaces\IContactRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\SettingRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\ISettingRepository.cs" />
+    <Compile Include="Logic\Exceptions\NotFoundException.cs" />
+    <Compile Include="Logic\Exceptions\ValidationException.cs" />
     <Compile Include="Logic\Implementations\BarrierLogic.cs" />
     <Compile Include="Logic\Implementations\ContactLogic.cs" />
+    <Compile Include="Logic\Implementations\ModalLogic.cs" />
     <Compile Include="Logic\Interfaces\IBarrierLogic.cs" />
     <Compile Include="Logic\Interfaces\IContactLogic.cs" />
+    <Compile Include="Logic\Interfaces\IModalLogic.cs" />
     <Compile Include="Logic\Mappers\BarrierMapper.cs" />
     <Compile Include="Logic\Mappers\ContactMapper.cs" />
     <Compile Include="Logic\Models\BarrierModel.cs" />

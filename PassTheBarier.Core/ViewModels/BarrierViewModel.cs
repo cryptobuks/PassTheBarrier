@@ -1,6 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Acr.UserDialogs;
-using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using PassTheBarier.Core.Logic.Interfaces;
 using PassTheBarier.Core.Logic.Models;
@@ -9,41 +7,25 @@ namespace PassTheBarier.Core.ViewModels
 {
     public class BarrierViewModel : BaseViewModel
     {
-		private IUserDialogs _userDialogs;
-		private IBarrierLogic _barrierLogic;
-		private IMvxNavigationService _navigationService;
+	    private readonly IModalLogic _modalLogic;
+		private readonly IBarrierLogic _barrierLogic;
 
-		public IMvxCommand FetchBarrierCommand { get; private set; }
+		public IMvxCommand LoadBarrierCommand { get; private set; }
 		public IMvxCommand SaveBarrierCommand { get; private set; }
 
-		public MvxNotifyTask FetchBarrierTask { get; private set; }
-		public MvxNotifyTask SaveBarrierTask { get; private set; }
-
-		public BarrierViewModel(IUserDialogs userDialogs, IBarrierLogic barrierLogic, IMvxNavigationService navigationService)
+		public BarrierViewModel(IBarrierLogic barrierLogic, IModalLogic modalLogic)
 		{
-			_userDialogs = userDialogs;
 			_barrierLogic = barrierLogic;
-			_navigationService = navigationService;
+			_modalLogic = modalLogic;
 
-			FetchBarrierCommand = new MvxCommand(
-			() =>
-			{
-				FetchBarrierTask = MvxNotifyTask.Create(LoadBarrier);
-				RaisePropertyChanged(() => FetchBarrierTask);
-			});
-
-			SaveBarrierCommand = new MvxCommand(
-			() =>
-			{
-				SaveBarrierTask = MvxNotifyTask.Create(SaveBarrier);
-				RaisePropertyChanged(() => SaveBarrierTask);
-			});
+			SaveBarrierCommand = new MvxAsyncCommand(SaveBarrier);
+			LoadBarrierCommand = new MvxAsyncCommand(LoadBarrier);
 		}
 
 		private BarrierModel _barrier;
 		public BarrierModel Barrier
 		{
-			get { return _barrier; }
+			get => _barrier;
 			set
 			{
 				_barrier = value;
@@ -51,9 +33,30 @@ namespace PassTheBarier.Core.ViewModels
 			}
 		}
 
-		private async Task LoadBarrier()
+	    private bool _isServiceRunning;
+
+	    public bool IsServiceRunning
+	    {
+		    get => _isServiceRunning;
+		    set
+		    {
+			    _isServiceRunning = value;
+				RaisePropertyChanged(() => IsServiceRunning);
+		    }
+	    }
+
+	    public override Task Initialize()
+	    {
+			LoadBarrierCommand.Execute();
+
+			return base.Initialize();
+	    }
+
+	    private async Task LoadBarrier()
 		{
+			_modalLogic.DisplayLoading();
 			var barrier = await _barrierLogic.GetBarrierAsync();
+			_modalLogic.HideLoading();
 			if (barrier == null)
 			{
 				barrier = new BarrierModel();
@@ -63,12 +66,9 @@ namespace PassTheBarier.Core.ViewModels
 
 		private async Task SaveBarrier()
 		{
-			//validation
+			//TODO: validation
 			await _barrierLogic.SaveBarrierAsync(Barrier);
-			var toastConfig = new ToastConfig("Toasting...");
-			toastConfig.SetDuration(3000);
-			toastConfig.SetBackgroundColor(System.Drawing.Color.FromArgb(12, 131, 193));
-			_userDialogs.Toast(toastConfig);
+			_modalLogic.DisplayToast("Barrier saved successfully");
 		}
 	}
 }

@@ -74,6 +74,34 @@ namespace PassTheBarier.Core.Data.Repositories.Implementations
 			await connection.UpdateAsync(entity);
 		}
 
+	    public void DeleteEntity(T entity)
+	    {
+		    var connection = GetConnection();
+
+		    connection.Delete(entity);
+		}
+
+	    public async Task DeleteEntityAsync(T entity)
+	    {
+		    var connection = await GetAsyncConnection();
+
+		    await connection.DeleteAsync(entity);
+	    }
+
+		public void DeleteById(int id)
+	    {
+		    var connection = GetConnection();
+		    var entity = connection.Get<T>(id);
+		    connection.Delete(entity);
+		}
+
+	    public async Task DeleteByIdAsync(int id)
+	    {
+		    var connection = await GetAsyncConnection();
+		    var entity = await connection.GetAsync<T>(id);
+		    await connection.DeleteAsync(entity);
+	    }
+
 		protected async Task<SQLiteAsyncConnection> GetAsyncConnection()
         {
             var connection = _connectionFactory.GetAsyncConnection(DatabaseName);
