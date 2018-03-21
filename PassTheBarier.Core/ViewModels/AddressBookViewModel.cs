@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using PassTheBarier.Core.Logic.Interfaces;
 using PassTheBarier.Core.Logic.Models;
+using PassTheBarier.Core.Logic.Utils;
 
 namespace PassTheBarier.Core.ViewModels
 {
@@ -12,9 +14,10 @@ namespace PassTheBarier.Core.ViewModels
         private readonly IMvxNavigationService _navigationService;
 
         //Commands
-        public IMvxCommand<ContactModel> ContactSelectedCommand { get; private set; }
-        public IMvxCommand RefreshContactsCommand { get; private set; }
-        public IMvxCommand FetchContactsCommand { get; private set; }
+        public IMvxCommand<ContactModel> ContactSelectedCommand { get; }
+		public IMvxCommand AddContactCommand { get; }
+        public IMvxCommand RefreshContactsCommand { get; }
+        public IMvxCommand FetchContactsCommand { get; }
 
         //Tasks
         public MvxNotifyTask LoadContactsTask { get; private set; }
@@ -25,8 +28,8 @@ namespace PassTheBarier.Core.ViewModels
 
         public MvxObservableCollection<ContactModel> Contacts
         {
-            get { return _contacts; }
-            set
+            get => _contacts;
+	        set
             {
                 _contacts = value;
                 RaisePropertyChanged(() => Contacts);
@@ -42,7 +45,9 @@ namespace PassTheBarier.Core.ViewModels
 
             ContactSelectedCommand = new MvxAsyncCommand<ContactModel>(ContactSelected);
 
-            FetchContactsCommand = new MvxCommand(
+	        AddContactCommand = new MvxAsyncCommand(AddContact);
+
+			FetchContactsCommand = new MvxCommand(
                 () =>
                 {
                     FetchContactsTask = MvxNotifyTask.Create(LoadContacts);
@@ -73,8 +78,33 @@ namespace PassTheBarier.Core.ViewModels
 
         private async Task ContactSelected(ContactModel selectedContact)
         {
-            await _navigationService.Navigate<ContactViewModel, ContactModel>
-                (selectedContact);
+			//edit or delete or nothing
+            var result = await _navigationService.Navigate<ContactViewModel, ContactModel, ViewModelResult<ContactModel>>(selectedContact);
+	        if (result != null)
+	        {
+		        var contact = Contacts.FirstOrDefault(c => c.Id == result.Response.Id);
+				if (result.Response != null)
+		        {
+					//edit
+			        contact.Name = result.Response.Name;
+			        contact.Number = result.Response.Number;
+		        }
+		        else
+		        {
+					//delete
+			        Contacts.Remove(contact);
+		        }
+	        }
         }
+
+	    private async Task AddContact()
+	    {
+			//add or nothing
+		    var result = await _navigationService.Navigate<ContactViewModel, ContactModel, ViewModelResult<ContactModel>>(null);
+		    if (result != null && result.Response != null)
+		    {
+				Contacts.Add(result.Response);
+		    }
+	    }
     }
 }

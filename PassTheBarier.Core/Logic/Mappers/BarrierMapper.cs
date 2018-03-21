@@ -5,16 +5,33 @@ namespace PassTheBarier.Core.Logic.Mappers
 {
 	public static class BarrierMapper
 	{
-		public static BarrierModel ToModel(Setting setting)
+		public static BarrierModel ToModel(Barrier barrier)
 		{
-			if (setting == null)
+			if (barrier == null)
 			{
 				return null;
 			}
 
 			return new BarrierModel
 			{
-				Number = setting.Value
+				Id = barrier.Id,
+				Number = barrier.Number,
+				MessageText = barrier.MessageText
+			};
+		}
+
+		public static Barrier ToEntity(BarrierModel barrier)
+		{
+			if (barrier == null)
+			{
+				return null;
+			}
+
+			return new Barrier
+			{
+				Id = barrier.Id,
+				Number = barrier.Number,
+				MessageText = barrier.MessageText
 			};
 		}
 	}

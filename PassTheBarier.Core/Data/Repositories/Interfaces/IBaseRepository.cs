@@ -14,9 +14,9 @@ namespace PassTheBarier.Core.Data.Repositories.Interfaces
 
 		Task<T> GetByIdAsync(int id);
 
-		void Add(T entity);
+		int Add(T entity);
 
-		Task AddAsync(T entity);
+		Task<int> AddAsync(T entity);
 
 		void Update(T entity);
 

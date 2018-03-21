@@ -1,4 +1,4 @@
-﻿using PassTheBarier.Core.Data;
+﻿using System.Linq;
 using PassTheBarier.Core.Data.Entities;
 using PassTheBarier.Core.Data.Repositories.Interfaces;
 using PassTheBarier.Core.Logic.Interfaces;
@@ -10,63 +10,63 @@ namespace PassTheBarier.Core.Logic.Implementations
 {
 	public class BarrierLogic : IBarrierLogic
 	{
-		private readonly ISettingRepository _settingRepository;
+		private readonly IBarrierRepository _barrierRepository;
 
-		public BarrierLogic(ISettingRepository settingRepository)
+		public BarrierLogic(IBarrierRepository barrierRepository)
 		{
-			_settingRepository = settingRepository;
+			_barrierRepository = barrierRepository;
 		}
 
 		public BarrierModel GetBarrier()
 		{
-			var barrierSetting = _settingRepository.GetByKey(DataConstants.BarrierKey);
-
-			return BarrierMapper.ToModel(barrierSetting);
+			return BarrierMapper.ToModel(GetBarrierEntity());
 		}
 
 		public async Task<BarrierModel> GetBarrierAsync()
 		{
-			var barrierSetting = await _settingRepository.GetByKeyAsync(DataConstants.BarrierKey);
-
-			return BarrierMapper.ToModel(barrierSetting);
+			return BarrierMapper.ToModel(await GetBarrierEntityAsync());
 		}
 
-		public void SaveBarrier(BarrierModel barrier)
+		public void SaveBarrier(BarrierModel barrierModel)
 		{
-			var barrierSetting = _settingRepository.GetByKey(DataConstants.BarrierKey);
-			if (barrierSetting == null)
+			var barrier = GetBarrierEntity();
+
+			if (barrier == null)
 			{
-				barrierSetting = new Setting
-				{
-					Key = DataConstants.BarrierKey,
-					Value = barrier.Number
-				};
-				_settingRepository.Add(barrierSetting);
+				_barrierRepository.Add(BarrierMapper.ToEntity(barrierModel));
 			}
 			else
 			{
-				barrierSetting.Value = barrier.Number;
-				_settingRepository.Update(barrierSetting);
+				_barrierRepository.Update(BarrierMapper.ToEntity(barrierModel));
 			}
 		}
 
-		public async Task SaveBarrierAsync(BarrierModel barrier)
+		public async Task SaveBarrierAsync(BarrierModel barrierModel)
 		{
-			var barrierSetting = await _settingRepository.GetByKeyAsync(DataConstants.BarrierKey);
-			if (barrierSetting == null)
+			var barrier = await GetBarrierEntityAsync();
+			if (barrier == null)
 			{
-				barrierSetting = new Setting
-				{
-					Key = DataConstants.BarrierKey,
-					Value = barrier.Number
-				};
-				await _settingRepository.AddAsync(barrierSetting);
+				await _barrierRepository.AddAsync(BarrierMapper.ToEntity(barrierModel));
 			}
 			else
 			{
-				barrierSetting.Value = barrier.Number;
-				await _settingRepository.UpdateAsync(barrierSetting);
+				await _barrierRepository.UpdateAsync(BarrierMapper.ToEntity(barrierModel));
 			}
+		}
+
+		private Barrier GetBarrierEntity()
+		{
+			var barrier = _barrierRepository.GetAll().FirstOrDefault();
+
+			return barrier;
+		}
+
+		private async Task<Barrier> GetBarrierEntityAsync()
+		{
+			var barriers = await _barrierRepository.GetAllAsync();
+			var barrier = barriers.FirstOrDefault();
+
+			return barrier;
 		}
 	}
 }

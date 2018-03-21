@@ -2,7 +2,7 @@
 {
 	public interface IModalLogic
 	{
-		void DisplayToast(string message);
+		int DisplayToast(string message);
 		void DisplayLoading();
 		void HideLoading();
 	}

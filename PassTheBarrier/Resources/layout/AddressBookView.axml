@@ -25,6 +25,16 @@
         local:MvxItemTemplate="@layout/contact_item"
         local:MvxBind="ItemsSource Contacts; ItemClick ContactSelectedCommand" />
     </MvxSwipeRefreshLayout>
+    <Refractored.Fab.FloatingActionButton
+      android:id="@+id/fab"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom|right"
+      android:layout_margin="20dp"
+      android:src="@drawable/add_icon"
+      local:fab_colorNormal="@color/colorPrimary"
+      local:fab_colorPressed="@color/colorPrimary"
+      local:fab_colorRipple="@color/gray" />
 
   </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

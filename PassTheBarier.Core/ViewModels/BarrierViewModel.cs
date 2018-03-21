@@ -1,22 +1,29 @@
-﻿using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
+using MvvmValidation;
 using PassTheBarier.Core.Logic.Interfaces;
 using PassTheBarier.Core.Logic.Models;
+using PassTheBarier.Core.Logic.ResourcesFiles;
+using PassTheBarier.Core.Logic.Utils;
 
 namespace PassTheBarier.Core.ViewModels
 {
-    public class BarrierViewModel : BaseViewModel
+    public class BarrierViewModel : InputViewModel
     {
 	    private readonly IModalLogic _modalLogic;
 		private readonly IBarrierLogic _barrierLogic;
+	    private readonly IMvxNavigationService _navigationService;
 
-		public IMvxCommand LoadBarrierCommand { get; private set; }
-		public IMvxCommand SaveBarrierCommand { get; private set; }
+		public IMvxCommand LoadBarrierCommand { get; }
+		public IMvxCommand SaveBarrierCommand { get; }
 
-		public BarrierViewModel(IBarrierLogic barrierLogic, IModalLogic modalLogic)
+		public BarrierViewModel(IBarrierLogic barrierLogic, IModalLogic modalLogic, IMvxNavigationService navigationService)
 		{
 			_barrierLogic = barrierLogic;
 			_modalLogic = modalLogic;
+			_navigationService = navigationService;
 
 			SaveBarrierCommand = new MvxAsyncCommand(SaveBarrier);
 			LoadBarrierCommand = new MvxAsyncCommand(LoadBarrier);
@@ -32,18 +39,6 @@ namespace PassTheBarier.Core.ViewModels
 				RaisePropertyChanged(() => Barrier);
 			}
 		}
-
-	    private bool _isServiceRunning;
-
-	    public bool IsServiceRunning
-	    {
-		    get => _isServiceRunning;
-		    set
-		    {
-			    _isServiceRunning = value;
-				RaisePropertyChanged(() => IsServiceRunning);
-		    }
-	    }
 
 	    public override Task Initialize()
 	    {
@@ -66,9 +61,32 @@ namespace PassTheBarier.Core.ViewModels
 
 		private async Task SaveBarrier()
 		{
-			//TODO: validation
-			await _barrierLogic.SaveBarrierAsync(Barrier);
-			_modalLogic.DisplayToast("Barrier saved successfully");
+			if (IsValid())
+			{
+				_modalLogic.DisplayLoading();
+				await _barrierLogic.SaveBarrierAsync(Barrier);
+				_modalLogic.HideLoading();
+				_modalLogic.DisplayToast(Messages.BarrierSavedSuccessfully);
+
+				await _navigationService.Close(this);
+			}
 		}
-	}
+
+	    protected override bool IsValid()
+	    {
+		    var validator = new ValidationHelper();
+		    var regex = new Regex(Constants.NumberRegex);
+
+		    validator.AddRequiredRule(() => Barrier.Number, Messages.FieldRequired);
+		    validator.AddRule(() => Barrier.Number,
+			    () => RuleResult.Assert(regex.IsMatch(Barrier.Number), Messages.InvalidNumber));
+
+		    validator.AddRequiredRule(() => Barrier.MessageText, Messages.FieldRequired);
+
+		    var result = validator.ValidateAll();
+		    Errors = result.AsObservableDictionary();
+
+		    return result.IsValid;
+		}
+    }
 }

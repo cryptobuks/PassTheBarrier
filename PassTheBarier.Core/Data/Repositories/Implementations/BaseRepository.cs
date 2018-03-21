@@ -46,18 +46,18 @@ namespace PassTheBarier.Core.Data.Repositories.Implementations
 			return await connection.GetAsync<T>(id);
 		}
 
-		public void Add(T entity)
+		public int Add(T entity)
 		{
 			var connection = GetConnection();
 
-			connection.Insert(entity);
+			return connection.Insert(entity);
 		}
 
-		public async Task AddAsync(T entity)
+		public async Task<int> AddAsync(T entity)
 		{
 			var connection = await GetAsyncConnection();
 
-			await connection.InsertAsync(entity);
+			return await connection.InsertAsync(entity);
 		}
 
 		public void Update(T entity)

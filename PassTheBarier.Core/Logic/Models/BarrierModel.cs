@@ -2,6 +2,10 @@
 {
 	public class BarrierModel
 	{
+		public int Id { get; set; }
+
 		public string Number { get; set; }
+
+		public string MessageText { get; set; }
 	}
 }

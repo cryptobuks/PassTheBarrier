@@ -30,7 +30,23 @@
         android:layout_gravity="center_horizontal"
         style="@style/PassTheBarrier.EditText"
         android:selectAllOnFocus="true"
-        local:MvxBind="Text Barrier.Number, Mode=TwoWay" />
+        local:MvxBind="Text Barrier.Number, Mode=TwoWay; Error Errors['Number'];" />
+      <TextView
+        android:id="@+id/barrierMessageTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.PrimaryText"
+        android:layout_gravity="center_horizontal"
+        android:text="Message text"
+        />
+      <EditText
+        android:id="@+id/barrierMessageEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:selectAllOnFocus="true"
+        style="@style/PassTheBarrier.EditText"
+        local:MvxBind="Text Barrier.MessageText, Mode=TwoWay; Error Errors['MessageText']" />
       <Button
         android:id="@+id/barrierSaveBtn"
         android:layout_width="150dp"

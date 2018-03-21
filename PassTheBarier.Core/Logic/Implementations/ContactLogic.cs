@@ -6,6 +6,7 @@ using PassTheBarier.Core.Logic.Exceptions;
 using PassTheBarier.Core.Logic.Interfaces;
 using PassTheBarier.Core.Logic.Mappers;
 using PassTheBarier.Core.Logic.Models;
+using PassTheBarier.Core.Logic.ResourcesFiles;
 
 namespace PassTheBarier.Core.Logic.Implementations
 {
@@ -23,61 +24,41 @@ namespace PassTheBarier.Core.Logic.Implementations
             var contacts = await _contactRepository.GetAllAsync();
             var contactModels = contacts.Select(ContactMapper.ToModel).ToList();
 
-            contactModels.Add(new ContactModel
-            {
-                Id = 1,
-                Name = "Vlad Trenea",
-                Number = "0742606519"
-            });
-            contactModels.Add(new ContactModel
-            {
-                Id = 2,
-                Name = "AAAAAA",
-                Number = "0742606519"
-            });
-            contactModels.Add(new ContactModel
-            {
-                Id =3,
-                Name = "BBBB",
-                Number = "0742606519"
-            });
-            contactModels.Add(new ContactModel
-            {
-                Id = 4,
-                Name = "CCCCC",
-                Number = "0742606519"
-            });
-
-            return contactModels;
+	        return contactModels;
         }
 
-        public async Task AddAsync(ContactModel contactModel)
+        public async Task<ContactModel> AddAsync(ContactModel contactModel)
         {
 	        var contactWithName = await _contactRepository.GetByNameAsync(contactModel.Name);
 	        if (contactWithName != null)
 	        {
-				throw new ValidationException("A contact with that name already exists.");
+				throw new ValidationException(Messages.AContactAlreadyExists);
 	        }
 
-	        await _contactRepository.AddAsync(ContactMapper.ToEntity(contactModel));
+	        var id = await _contactRepository.AddAsync(ContactMapper.ToEntity(contactModel));
+	        contactModel.Id = id;
+
+	        return contactModel;
         }
 
-        public async Task UpdateAsync(ContactModel contactModel)
+        public async Task<ContactModel> UpdateAsync(ContactModel contactModel)
         {
 	        var contact = await _contactRepository.GetByIdAsync(contactModel.Id);
 	        var contactWithName = await _contactRepository.GetByNameAsync(contactModel.Name);
 
 	        if (contact == null)
 	        {
-				throw new NotFoundException("Contact not found");
+				throw new NotFoundException(Messages.ContactNotFound);
 	        }
 
-	        if (contact.Id != contactWithName.Id)
+	        if (contactWithName != null && contact.Id != contactWithName.Id)
 	        {
-				throw new ValidationException("A contact with that name already exists");
+				throw new ValidationException(Messages.AContactAlreadyExists);
 	        }
 
 			await _contactRepository.UpdateAsync(ContactMapper.ToEntity(contactModel));
+
+	        return contactModel;
         }
 
         public async Task DeleteAsync(int id)
@@ -85,7 +66,7 @@ namespace PassTheBarier.Core.Logic.Implementations
 	        var contact = await _contactRepository.GetByIdAsync(id);
 	        if (contact == null)
 	        {
-				throw new NotFoundException("Contact not found");
+				throw new NotFoundException(Messages.ContactNotFound);
 	        }
 
 	        await _contactRepository.DeleteEntityAsync(contact);

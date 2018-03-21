@@ -35,6 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <EmbeddedResource Include="Logic\ResourcesFiles\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
@@ -42,14 +46,14 @@
     <Compile Include="Data\DataConstants.cs" />
     <Compile Include="Data\Entities\Contact.cs" />
     <Compile Include="Data\Entities\Entity.cs" />
-    <Compile Include="Data\Entities\Setting.cs" />
+    <Compile Include="Data\Entities\Barrier.cs" />
     <Compile Include="Data\ISqliteConnectionFactory.cs" />
     <Compile Include="Data\Repositories\Implementations\BaseRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\ContactRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\IBaseRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\IContactRepository.cs" />
-    <Compile Include="Data\Repositories\Implementations\SettingRepository.cs" />
-    <Compile Include="Data\Repositories\Interfaces\ISettingRepository.cs" />
+    <Compile Include="Data\Repositories\Implementations\BarrierRepository.cs" />
+    <Compile Include="Data\Repositories\Interfaces\IBarrierRepository.cs" />
     <Compile Include="Logic\Exceptions\NotFoundException.cs" />
     <Compile Include="Logic\Exceptions\ValidationException.cs" />
     <Compile Include="Logic\Implementations\BarrierLogic.cs" />
@@ -62,6 +66,15 @@
     <Compile Include="Logic\Mappers\ContactMapper.cs" />
     <Compile Include="Logic\Models\BarrierModel.cs" />
     <Compile Include="Logic\Models\ContactModel.cs" />
+    <Compile Include="Logic\ResourcesFiles\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\Utils\Constants.cs" />
+    <Compile Include="Logic\Utils\ObservableDictionary.cs" />
+    <Compile Include="Logic\Utils\ValidationResultExtension.cs" />
+    <Compile Include="Logic\Utils\ViewModelResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AddressBookViewModel.cs" />
@@ -69,6 +82,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\InputViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
   </ItemGroup>
@@ -94,6 +108,9 @@
     <Reference Include="MvvmCross.Platform, Version=5.6.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Platform.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmValidation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=113792d2053ac461, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmValidation.3.1.0\lib\netstandard1.0\MvvmValidation.dll</HintPath>
     </Reference>
     <Reference Include="Splat, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Splat.2.0.0\lib\netstandard1.1\Splat.dll</HintPath>

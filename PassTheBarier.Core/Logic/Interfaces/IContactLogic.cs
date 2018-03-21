@@ -8,9 +8,9 @@ namespace PassTheBarier.Core.Logic.Interfaces
     {
         Task<IEnumerable<ContactModel>> GetAllAsync();
 
-        Task AddAsync(ContactModel contact);
+        Task<ContactModel> AddAsync(ContactModel contact);
 
-        Task UpdateAsync(ContactModel contact);
+        Task<ContactModel> UpdateAsync(ContactModel contact);
 
         Task DeleteAsync(int id);
     }

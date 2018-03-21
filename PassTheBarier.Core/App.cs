@@ -31,7 +31,7 @@ namespace PassTheBarier.Core
 		private void InitializeData()
         {
             Mvx.RegisterType<IContactRepository, ContactRepository>();
-			Mvx.RegisterType<ISettingRepository, SettingRepository>();
+			Mvx.RegisterType<IBarrierRepository, BarrierRepository>();
 		}
 
 		private void InitializeStartNavigation()
