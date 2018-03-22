@@ -7,6 +7,7 @@ using PassTheBarier.Core.Logic.Interfaces;
 using PassTheBarier.Core.Logic.Models;
 using PassTheBarier.Core.Logic.ResourcesFiles;
 using PassTheBarier.Core.Logic.Utils;
+using PassTheBarier.Core.Navigation;
 
 namespace PassTheBarier.Core.ViewModels
 {

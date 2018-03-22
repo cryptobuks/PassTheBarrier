@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
+using PassTheBarier.Core.Navigation;
 
 namespace PassTheBarier.Core.ViewModels
 {
@@ -11,10 +12,22 @@ namespace PassTheBarier.Core.ViewModels
         {
             _navigationService = navigationService;
 
-            ShowHomeCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<HomeViewModel>());
-            ShowBarrierCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<BarrierViewModel>());
-            ShowAddressBookCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<AddressBookViewModel>());
-            ShowAboutCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<AboutViewModel>());
+            ShowHomeCommand = new MvxAsyncCommand(async () =>
+            {
+	            await _navigationService.Navigate<HomeViewModel>(new CleartStackPresentationBundle());
+            });
+            ShowBarrierCommand = new MvxAsyncCommand(async () =>
+            {
+	            await _navigationService.Navigate<BarrierViewModel>(new CleartStackPresentationBundle());
+            });
+            ShowAddressBookCommand = new MvxAsyncCommand(async () =>
+            {
+	            await _navigationService.Navigate<AddressBookViewModel>(new CleartStackPresentationBundle());
+            });
+            ShowAboutCommand = new MvxAsyncCommand(async () =>
+            {
+	            await _navigationService.Navigate<AboutViewModel>(new CleartStackPresentationBundle());
+            });
         }
 
         // MVVM Commands

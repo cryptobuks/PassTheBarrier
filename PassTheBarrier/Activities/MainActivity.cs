@@ -33,8 +33,8 @@ namespace PassTheBarrier.Activities
 
             if (bundle == null)
             {
-                ViewModel.ShowHomeViewModelCommand.Execute(null);
-                ViewModel.ShowMenuViewModelCommand.Execute(null);
+	            ViewModel.ShowMenuViewModelCommand.Execute(null);
+				ViewModel.ShowHomeViewModelCommand.Execute(null);
             }
         }
 
@@ -46,7 +46,7 @@ namespace PassTheBarrier.Activities
             }
             else
             {
-                base.OnBackPressed();
+				base.OnBackPressed();
             }
         }
 

@@ -6,7 +6,7 @@ using PassTheBarier.Core.ViewModels;
 
 namespace PassTheBarrier.Fragments
 {
-    [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, false)]
+    [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, true)]
     [Register("passTheBarrier.droid.fragments.BarrierFragment")]
     public class BarrierFragment : BaseFragment<BarrierViewModel>
     {

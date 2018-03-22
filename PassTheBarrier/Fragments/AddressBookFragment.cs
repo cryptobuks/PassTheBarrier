@@ -8,7 +8,7 @@ using Refractored.Fab;
 
 namespace PassTheBarrier.Fragments
 {
-	[MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, false)]
+	[MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, true)]
 	[Register("passTheBarrier.droid.fragments.AddressBookFragment")]
 	public class AddressBookFragment : BaseFragment<AddressBookViewModel>
 	{

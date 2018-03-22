@@ -56,7 +56,9 @@ namespace PassTheBarrier
 
         protected override IMvxAndroidViewPresenter CreateViewPresenter()
         {
-            return new MvxAppCompatViewPresenter(AndroidViewAssemblies);
+            var presenter = new CustomPresenter(AndroidViewAssemblies);
+
+	        return presenter;
         }
 
 		protected override void InitializeFirstChance()

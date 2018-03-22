@@ -1,4 +1,4 @@
-﻿namespace PassTheBarier.Core.Logic.Utils
+﻿namespace PassTheBarier.Core.Navigation
 {
 	public class ViewModelResult<T>
 	{

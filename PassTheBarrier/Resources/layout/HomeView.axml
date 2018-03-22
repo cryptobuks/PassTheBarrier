@@ -9,17 +9,77 @@
 
   <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    local:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:layout_height="match_parent">
 
-    <TextView
-      android:text="Home"
-      android:textAppearance="?android:attr/textAppearanceMedium"
-      android:layout_width="wrap_content"
+    <RelativeLayout
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/aboutText"
-      android:gravity="left"
-      android:paddingTop="20dp" />
+      android:layout_alignParentBottom="true"
+      android:layout_marginBottom="30dp"
+      local:MvxBind="Visibility IsServiceRunning, Converter=Visibility">
+
+      <ImageView
+        android:id="@+id/serviceRunningImageView"
+        android:src="@drawable/play_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/serviceIsRunningTextView"/>
+
+      <TextView
+        android:id="@+id/serviceIsRunningTextView"
+        android:text="The service is currently running"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/stopServiceBtn"/>
+
+      <Button
+        android:id="@+id/stopServiceBtn"
+        android:layout_width="150dp"
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_border"
+        style="@style/PassTheBarrier.Button"
+        android:text="STOP"
+        local:MvxBind="Click StopServiceCommand" />
+    </RelativeLayout>
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_marginBottom="30dp"
+      local:MvxBind="Visible IsServiceRunning, Converter=NegativeBool">
+
+      <ImageView
+        android:id="@+id/serviceStoppedImageView"
+        android:src="@drawable/stop_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/serviceIsStoppedTextView"/>
+
+      <TextView
+        android:id="@+id/serviceIsStoppedTextView"
+        android:text="The service is currently stopped"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/startServiceBtn"/>
+
+      <Button
+        android:id="@+id/startServiceBtn"
+        android:layout_width="150dp"
+        android:layout_height="36dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_border"
+        style="@style/PassTheBarrier.Button"
+        android:text="START"
+        local:MvxBind="Click StartServiceCommand" />
+    </RelativeLayout>
 
   </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

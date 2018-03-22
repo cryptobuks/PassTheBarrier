@@ -6,7 +6,7 @@ using PassTheBarier.Core.ViewModels;
 
 namespace PassTheBarrier.Fragments
 {
-    [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, false)]
+    [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame)]
     [Register("passTheBarrier.droid.fragments.HomeFragment")]
     public class HomeFragment : BaseFragment<HomeViewModel>
     {
@@ -14,10 +14,7 @@ namespace PassTheBarrier.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
-            return base.OnCreateView(inflater, container, savedInstanceState);
+			return base.OnCreateView(inflater, container, savedInstanceState);
         }
     }
 }
