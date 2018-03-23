@@ -10,52 +10,48 @@
     android:id="@+id/contactMainView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-      android:id="@+id/contactEditableView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_centerVertical="true"
-      android:orientation="vertical">
       <TextView
         android:id="@+id/contactNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:text="Name"
-        style="@style/PassTheBarrier.PrimaryText" />
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/contactNameEditText"
+        style="@style/PassTheBarrier.EditTextLabel" />
       <EditText
         android:id="@+id/contactNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         style="@style/PassTheBarrier.EditText"
-        android:selectAllOnFocus="true"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/contactNumberTextView"
         local:MvxBind="Text Contact.Name, Mode=TwoWay" />
-
       <TextView
         android:id="@+id/contactNumberTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:text="Number"
-        style="@style/PassTheBarrier.PrimaryText" />
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/contactNumberEditText"
+        style="@style/PassTheBarrier.EditTextLabel" />
       <EditText
         android:id="@+id/contactNumberEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/contactSaveBtn"
+        android:layout_centerHorizontal="true"
         style="@style/PassTheBarrier.EditText"
-        android:selectAllOnFocus="true"
         local:MvxBind="Text Contact.Number, Mode=TwoWay" />
       <Button
         android:id="@+id/contactSaveBtn"
-        android:layout_width="150dp"
-        android:layout_height="36dp"
-        android:background="@drawable/button_border"
-        style="@style/PassTheBarrier.Button"
-        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="15dp"
         android:text="SAVE"
+        style="@style/PassTheBarrier.Button"
         local:MvxBind="Click SaveContactCommand" />
-    </LinearLayout>
   </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

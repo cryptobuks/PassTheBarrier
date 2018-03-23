@@ -32,15 +32,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/stopServiceBtn"/>
+        android:layout_above="@+id/stopServiceBtn"
+        style="@style/PassTheBarrier.PrimaryText"/>
 
       <Button
         android:id="@+id/stopServiceBtn"
-        android:layout_width="150dp"
-        android:layout_height="36dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/button_border"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="15dp"
         style="@style/PassTheBarrier.Button"
         android:text="STOP"
         local:MvxBind="Click StopServiceCommand" />
@@ -67,15 +69,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/startServiceBtn"/>
+        android:layout_above="@+id/startServiceBtn"
+        style="@style/PassTheBarrier.PrimaryText"/>
 
       <Button
         android:id="@+id/startServiceBtn"
-        android:layout_width="150dp"
-        android:layout_height="36dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/button_border"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="15dp"
         style="@style/PassTheBarrier.Button"
         android:text="START"
         local:MvxBind="Click StartServiceCommand" />

@@ -22,16 +22,16 @@ namespace PassTheBarrier.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
 
             var view = this.BindingInflate(Resource.Layout.MenuView, null);
 
             _navigationView = view.FindViewById<NavigationView>(Resource.Id.navigation_view);
             _navigationView.SetNavigationItemSelectedListener(this);
-            _navigationView.Menu.FindItem(Resource.Id.nav_home).SetChecked(true);
+
+			var homeMenuItem = _navigationView.Menu.FindItem(Resource.Id.nav_home);
+	        homeMenuItem.SetCheckable(true);
+	        homeMenuItem.SetChecked(true);
 
             return view;
         }

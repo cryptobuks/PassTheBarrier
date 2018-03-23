@@ -6,25 +6,27 @@
                                                  android:layout_height="match_parent">
   <include
     layout="@layout/toolbar_actionbar" />
-  <RelativeLayout
+  <!--  <RelativeLayout-->
+  <!--    android:layout_width="match_parent"-->
+  <!--    android:layout_height="match_parent"-->
+  <!--    local:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+  <MvxSwipeRefreshLayout
+    android:id="@+id/contacts_refresher"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    local:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-    <MvxSwipeRefreshLayout
-      android:id="@+id/contacts_refresher"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
+    local:layout_behavior="@string/appbar_scrolling_view_behavior"
+    local:MvxBind="IsRefreshing LoadContactsTask; RefreshCommand RefreshContactsCommand">
+    <MvxRecyclerView
+      android:id="@+id/contacts_recycler_view"
+      android:scrollbars="vertical"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      local:layout_behavior="@string/appbar_scrolling_view_behavior"
-      local:MvxBind="IsRefreshing LoadContactsTask; RefreshCommand RefreshContactsCommand">
-      <MvxRecyclerView
-        android:id="@+id/contacts_recycler_view"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        local:MvxItemTemplate="@layout/contact_item"
-        local:MvxBind="ItemsSource Contacts; ItemClick ContactSelectedCommand" />
-    </MvxSwipeRefreshLayout>
+      local:MvxItemTemplate="@layout/contact_item"
+      local:MvxBind="ItemsSource Contacts; ItemClick ContactSelectedCommand" />
+
     <Refractored.Fab.FloatingActionButton
       android:id="@+id/fab"
       android:layout_width="wrap_content"
@@ -32,9 +34,9 @@
       android:layout_gravity="bottom|right"
       android:layout_margin="20dp"
       android:src="@drawable/add_icon"
-      local:fab_colorNormal="@color/colorPrimary"
-      local:fab_colorPressed="@color/colorPrimary"
-      local:fab_colorRipple="@color/gray" />
-
-  </RelativeLayout>
+      local:fab_colorNormal="@color/primary"
+      local:fab_colorPressed="@color/primary_dark"
+      local:fab_colorRipple="@color/primary_light" />
+  </MvxSwipeRefreshLayout>
+  <!--  </RelativeLayout>-->
 </android.support.design.widget.CoordinatorLayout>

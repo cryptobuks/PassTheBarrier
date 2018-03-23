@@ -14,9 +14,11 @@ namespace PassTheBarrier.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-	        ParentActivity.SupportActionBar.Title = GetString(Resource.String.contact);
+			var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-			return base.OnCreateView(inflater, container, savedInstanceState);
+			ParentActivity.SupportActionBar.Title = GetString(Resource.String.contact);
+
+	        return view;
         }
     }
 }

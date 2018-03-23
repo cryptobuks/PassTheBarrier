@@ -1,16 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <resources>
-  <!-- Material colors -->
-  <color name="colorPrimary">#1a1a1a</color>
-  <color name="colorPrimaryDark">#000000</color>
-  <color name="colorAccent">#C1272C</color>
-  <!-- White to Black -->
-  <color name="white">#FFFFFF</color>
-  <color name="light_gray">#EFF2F5</color>
-  <color name="med_gray">#C7D2DC</color>
-  <color name="gray">#5C7082</color>
-  <color name="dark_gray">#FF2B343D</color>
-  <color name="black">#0D131A</color>
-  <color name="text_gray">#5A6570</color>
-  <!-- others-->
+  <color name="primary">#009688</color>
+  <color name="primary_dark">#00796B</color>
+  <color name="primary_light">#B2DFDB</color>
+  <color name="accent">#00BCD4</color>
+  <color name="primary_text">#212121</color>
+  <color name="secondary_text">#757575</color>
+  <color name="icons">#FFFFFF</color>
+  <color name="divider">#BDBDBD</color>
+  <color name="windowBackground">#fff</color>
 </resources>
