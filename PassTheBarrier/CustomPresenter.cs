@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
+using Android.Support.V4.App;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using PassTheBarier.Core.Logic.Utils;
@@ -16,11 +17,12 @@ namespace PassTheBarrier
 		{
 			if (request.PresentationValues?[Constants.NavigationCommandKey] == Constants.NavigationCommandClearStackValue)
 			{
-				while (CurrentFragmentManager.BackStackEntryCount > 0)
+				for (int i = 0; i < CurrentFragmentManager.BackStackEntryCount; i++)
 				{
-					CurrentFragmentManager.PopBackStackImmediate();
+					CurrentFragmentManager.PopBackStack(null, FragmentManager.PopBackStackInclusive);
 				}
 			}
+
 			base.Show(request);
 		}
 	}
