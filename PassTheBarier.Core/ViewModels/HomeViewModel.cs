@@ -1,45 +1,82 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 using PassTheBarier.Core.Logic.Interfaces;
+using PassTheBarier.Core.Logic.Models;
+using PassTheBarier.Core.Messenger;
 
 namespace PassTheBarier.Core.ViewModels
 {
-    public class HomeViewModel : BaseViewModel
-    {
-	    private IBarrierLogic _barrierLogic;
-	    private IContactLogic _contactLogic;
+	public class HomeViewModel : BaseViewModel
+	{
+		private readonly IModalLogic _modalLogic;
+		private readonly IBarrierLogic _barrierLogic;
+		private readonly IContactLogic _contactLogic;
+		private readonly MvxSubscriptionToken _barrierSubscriptionToken;
+		private readonly MvxSubscriptionToken _contactsSubscriptionToken;
 
-	    public HomeViewModel(IContactLogic contactLogic, IBarrierLogic barrierLogic)
-	    {
-		    _contactLogic = contactLogic;
-		    _barrierLogic = barrierLogic;
+		private BarrierModel _barrier;
+		public BarrierModel Barrier
+		{
+			get => _barrier;
+			set
+			{
+				_barrier = value;
+				RaisePropertyChanged(() => Barrier);
+			}
+		}
 
-			StartServiceCommand = new MvxCommand(StartService);
-			StopServiceCommand = new MvxCommand(StopService);
-	    }
+		public IEnumerable<ContactModel> Contacts { get; set; }
 
-	    public IMvxCommand StartServiceCommand { get; set; }
-	    public IMvxCommand StopServiceCommand { get; set; }
+		public HomeViewModel(IContactLogic contactLogic, IBarrierLogic barrierLogic, IModalLogic modalLogic, IMvxMessenger messenger)
+		{
+			_contactLogic = contactLogic;
+			_barrierLogic = barrierLogic;
+			_modalLogic = modalLogic;
 
-	    private bool _isServiceRunning;
+			LoadDataCommand = new MvxAsyncCommand(LoadData);
+			_barrierSubscriptionToken = messenger.Subscribe<BarrierMessage>(OnBarrierMessageReceived);
+			_contactsSubscriptionToken = messenger.Subscribe<ContactsMessage>(OnContactsMessageReceived);
+		}
+
+		public IMvxAsyncCommand LoadDataCommand { get; set; }
+
+		private bool _isServiceRunning;
 
 		public bool IsServiceRunning
-	    {
-		    get => _isServiceRunning;
-		    set
-		    {
-			    _isServiceRunning = value;
+		{
+			get => _isServiceRunning;
+			set
+			{
+				_isServiceRunning = value;
 				RaisePropertyChanged(() => IsServiceRunning);
-		    }
-	    }
+			}
+		}
 
-	    private void StartService()
-	    {
-		    IsServiceRunning = true;
-	    }
+		public override async Task Initialize()
+		{
+			await LoadData();
 
-	    private void StopService()
-	    {
-		    IsServiceRunning = false;
-	    }
-    }
+			await base.Initialize();
+		}
+
+		private void OnBarrierMessageReceived(BarrierMessage barrierMessage)
+		{
+			Barrier = barrierMessage.Barrier;
+		}
+
+		private void OnContactsMessageReceived(ContactsMessage contactsMessage)
+		{
+			Contacts = contactsMessage.Contacts;
+		}
+
+		private async Task LoadData()
+		{
+			_modalLogic.DisplayLoading();
+			Barrier = await _barrierLogic.GetBarrierAsync();
+			Contacts = await _contactLogic.GetAllAsync();
+			_modalLogic.HideLoading();
+		}
+	}
 }

@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
+using MvvmCross.Plugins.Messenger;
 using PassTheBarier.Core.Data.Repositories.Implementations;
 using PassTheBarier.Core.Data.Repositories.Interfaces;
 using PassTheBarier.Core.Logic.Implementations;
@@ -16,6 +17,7 @@ namespace PassTheBarier.Core
             base.Initialize();
 
 			Mvx.RegisterSingleton(() => UserDialogs.Instance);
+	        Mvx.LazyConstructAndRegisterSingleton<IMvxMessenger, MvxMessengerHub>();
 			InitializeData();
             InitializeLogic();
             InitializeStartNavigation();

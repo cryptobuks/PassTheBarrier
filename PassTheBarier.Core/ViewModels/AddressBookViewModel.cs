@@ -2,8 +2,10 @@
 using System.Threading.Tasks;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 using PassTheBarier.Core.Logic.Interfaces;
 using PassTheBarier.Core.Logic.Models;
+using PassTheBarier.Core.Messenger;
 using PassTheBarier.Core.Navigation;
 
 namespace PassTheBarier.Core.ViewModels
@@ -12,9 +14,10 @@ namespace PassTheBarier.Core.ViewModels
     {
         private readonly IContactLogic _contactLogic;
         private readonly IMvxNavigationService _navigationService;
+	    private readonly IMvxMessenger _messenger;
 
-        //Commands
-        public IMvxCommand<ContactModel> ContactSelectedCommand { get; }
+		//Commands
+		public IMvxCommand<ContactModel> ContactSelectedCommand { get; }
 		public IMvxCommand AddContactCommand { get; }
         public IMvxCommand RefreshContactsCommand { get; }
         public IMvxCommand FetchContactsCommand { get; }
@@ -36,12 +39,13 @@ namespace PassTheBarier.Core.ViewModels
             }
         }
 
-        public AddressBookViewModel(IContactLogic contactLogic, IMvxNavigationService navigationService)
+        public AddressBookViewModel(IContactLogic contactLogic, IMvxNavigationService navigationService, IMvxMessenger messenger)
         {
             _contactLogic = contactLogic;
             _navigationService = navigationService;
+	        _messenger = messenger;
 
-            Contacts = new MvxObservableCollection<ContactModel>();
+	        Contacts = new MvxObservableCollection<ContactModel>();
 
             ContactSelectedCommand = new MvxAsyncCommand<ContactModel>(ContactSelected);
 
@@ -88,14 +92,15 @@ namespace PassTheBarier.Core.ViewModels
 					//edit
 			        contact.Name = result.Response.Name;
 			        contact.Number = result.Response.Number;
-		        }
-		        else
+				}
+				else
 		        {
 					//delete
 			        Contacts.Remove(contact);
 		        }
-	        }
-        }
+		        _messenger.Publish(new ContactsMessage(this, Contacts));
+			}
+		}
 
 	    private async Task AddContact()
 	    {
@@ -104,7 +109,8 @@ namespace PassTheBarier.Core.ViewModels
 		    if (result?.Response != null)
 		    {
 				Contacts.Add(result.Response);
-		    }
+			    _messenger.Publish(new ContactsMessage(this, Contacts));
+			}
 	    }
     }
 }

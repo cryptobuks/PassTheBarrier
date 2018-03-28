@@ -6,10 +6,6 @@
                                                  android:layout_height="match_parent">
   <include
     layout="@layout/toolbar_actionbar" />
-  <!--  <RelativeLayout-->
-  <!--    android:layout_width="match_parent"-->
-  <!--    android:layout_height="match_parent"-->
-  <!--    local:layout_behavior="@string/appbar_scrolling_view_behavior">-->
 
   <MvxSwipeRefreshLayout
     android:id="@+id/contacts_refresher"
@@ -27,16 +23,15 @@
       local:MvxItemTemplate="@layout/contact_item"
       local:MvxBind="ItemsSource Contacts; ItemClick ContactSelectedCommand" />
 
-    <Refractored.Fab.FloatingActionButton
-      android:id="@+id/fab"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="bottom|right"
-      android:layout_margin="20dp"
-      android:src="@drawable/add_icon"
-      local:fab_colorNormal="@color/primary"
-      local:fab_colorPressed="@color/primary_dark"
-      local:fab_colorRipple="@color/primary_light" />
   </MvxSwipeRefreshLayout>
-  <!--  </RelativeLayout>-->
+  <Refractored.Fab.FloatingActionButton
+    android:id="@+id/fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|right"
+    android:layout_margin="20dp"
+    android:src="@drawable/plus_icon"
+    local:fab_colorNormal="@color/accent"
+    local:fab_colorPressed="@color/icons"
+    local:fab_colorRipple="@color/primary_light" />
 </android.support.design.widget.CoordinatorLayout>

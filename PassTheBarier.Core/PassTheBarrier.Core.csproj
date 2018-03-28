@@ -44,6 +44,7 @@
     <Compile Include="App.cs" />
     <Compile Include="AppStart.cs" />
     <Compile Include="Converters\NegativeBoolConverter.cs" />
+    <Compile Include="Converters\NullableConverter.cs" />
     <Compile Include="Data\DataConstants.cs" />
     <Compile Include="Data\Entities\Contact.cs" />
     <Compile Include="Data\Entities\Entity.cs" />
@@ -72,6 +73,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Messenger\BarrierMessage.cs" />
+    <Compile Include="Messenger\ContactsMessage.cs" />
     <Compile Include="Navigation\CleartStackPresentationBundle.cs" />
     <Compile Include="Logic\Utils\Constants.cs" />
     <Compile Include="Logic\Utils\ObservableDictionary.cs" />
@@ -111,6 +114,9 @@
       <HintPath>..\packages\MvvmCross.Platform.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MvvmCross.Plugins.Messenger, Version=5.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Messenger.5.6.3\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Messenger.dll</HintPath>
+    </Reference>
     <Reference Include="MvvmValidation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=113792d2053ac461, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmValidation.3.1.0\lib\netstandard1.0\MvvmValidation.dll</HintPath>
     </Reference>
@@ -132,7 +138,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
