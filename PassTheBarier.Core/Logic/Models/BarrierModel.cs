@@ -7,5 +7,7 @@
 		public string Number { get; set; }
 
 		public string MessageText { get; set; }
+
+		public bool Enabled { get; set; }
 	}
 }

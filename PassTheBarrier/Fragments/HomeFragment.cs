@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Android;
 using Android.App;
 using Android.Content;
@@ -12,7 +11,6 @@ using Android.Support.V4.Content;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Droid.Views.Attributes;
-using PassTheBarier.Core.Logic.Utils;
 using PassTheBarier.Core.ViewModels;
 using PassTheBarrier.Services;
 
@@ -26,13 +24,22 @@ namespace PassTheBarrier.Fragments
 
 		private const int PermissionRequestCode = 15;
 
-		private Intent _serviceToStartIntent;
+		private Intent _serviceIntent;
 
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-			ViewModel.IsServiceRunning = IsServiceRunning(typeof(SmsService));
+			_serviceIntent = new Intent(Activity, typeof(SmsService));
+			var isRunning = IsServiceRunning(typeof(SmsService));
+//			if (ViewModel.Barrier != null && ViewModel.Barrier.Enabled && !IsServiceRunning(typeof(SmsService)))
+//			{
+//				Activity.StartService(_serviceIntent);
+//			}
+			if (!IsServiceRunning(typeof(SmsService)))
+			{
+				Activity.StartService(_serviceIntent);
+			}
 
 			Point size = new Point();
 			Activity.WindowManager.DefaultDisplay.GetSize(size);
@@ -40,7 +47,6 @@ namespace PassTheBarrier.Fragments
 			var startImageBtn = view.FindViewById<ImageButton>(Resource.Id.startServiceBtn);
 			startImageBtn.LayoutParameters.Width = size.X * 45 / 100;
 			startImageBtn.LayoutParameters.Height = size.X * 45 / 100;
-			startImageBtn.Enabled = true;
 			startImageBtn.Click += OnStartServiceClick;
 
 			var stopImageBtn = view.FindViewById<ImageButton>(Resource.Id.stopServiceBtn);
@@ -49,6 +55,15 @@ namespace PassTheBarrier.Fragments
 			stopImageBtn.Click += OnStopServiceClick;
 
 			return view;
+		}
+
+		public override void OnDestroy()
+		{
+			if (ViewModel.IsServiceRunning)
+			{
+				Activity.StopService(_serviceIntent);
+			}
+			base.OnDestroy();
 		}
 
 		private void OnStartServiceClick(object sender, EventArgs e)
@@ -60,23 +75,18 @@ namespace PassTheBarrier.Fragments
 			}
 			else
 			{
-				_serviceToStartIntent = new Intent(Activity, typeof(SmsService));
-				_serviceToStartIntent.PutExtra(Constants.SmsServiceIsStartedIntent, IsServiceRunning(typeof(SmsService)));
-				_serviceToStartIntent.PutExtra(Constants.BarrierNumberIntentExtras, ViewModel.Barrier.Number);
-				_serviceToStartIntent.PutExtra(Constants.BarrierTextIntentExtras, ViewModel.Barrier.MessageText);
-				var bundle = new Bundle();
-				bundle.PutStringArrayList(Constants.ContactNumbersIntentExtras, ViewModel.Contacts.Select(c => c.Number).ToList());
-				_serviceToStartIntent.PutExtra(Constants.ContactsBundleIntentExtras, bundle);
-
-				Activity.StartService(_serviceToStartIntent);
-				ViewModel.IsServiceRunning = true;
+				ViewModel.TriggerBarrierStateCommand.Execute();
+				if (!IsServiceRunning(typeof(SmsService)))
+				{
+					Activity.StartService(_serviceIntent);
+				}
 			}
 		}
 
 		private void OnStopServiceClick(object sender, EventArgs e)
 		{
-			Activity.StopService(_serviceToStartIntent);
-			ViewModel.IsServiceRunning = false;
+			Activity.StopService(_serviceIntent);
+			ViewModel.TriggerBarrierStateCommand.Execute();
 		}
 
 		private bool IsServiceRunning(Type classTypeof)

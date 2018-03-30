@@ -4,5 +4,14 @@
 	<uses-permission android:name="android.permission.RECEIVE_SMS" />
 	<uses-permission android:name="android.permission.READ_SMS" />
 	<uses-permission android:name="android.permission.CALL_PHONE" />
-	<application android:allowBackup="true" android:label="@string/app_name" android:icon="@drawable/barrier_icon4" android:theme="@style/PassTheBarrier.Main"></application>
+	<application android:allowBackup="true" android:label="@string/app_name" android:icon="@drawable/barrier_icon4" android:theme="@style/PassTheBarrier.Main">
+	  <service android:name="passTheBarrier.services.smsService" android:enabled="true">
+	  </service>
+    <receiver android:name="passTheBarrier.broadcastReceivers.testReceiver" android:exported="true" android:enabled="true">
+	    <intent-filter>
+	      <action android:name="android.intent.action.BOOT_COMPLETED" />
+	      <action android:name="passTheBarrier.intents.restart" />
+	    </intent-filter>
+	  </receiver>
+	</application>
 </manifest>

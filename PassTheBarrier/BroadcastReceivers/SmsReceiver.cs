@@ -5,25 +5,34 @@ using Android.Content;
 using Android.Net;
 using Android.Provider;
 using Android.Telephony;
+using Android.Util;
 
 namespace PassTheBarrier.BroadcastReceivers
 {
-	[IntentFilter(new string[] { Telephony.Sms.Intents.SmsReceivedAction}, Priority = 1000)]
+	[IntentFilter(new string[] { Telephony.Sms.Intents.SmsReceivedAction})]
 	public class SmsReceiver : BroadcastReceiver
 	{
 		private readonly IEnumerable<string> _allowedContactNumbers;
 		private readonly string _barrierNumber;
 		private readonly string _barrierMessageText;
+		private readonly bool _barrierEnabled;
 
-		public SmsReceiver(IEnumerable<string> allowedContactNumbers, string barrierNumber, string barrierMessageText)
+		public SmsReceiver()
+		{
+			
+		}
+
+		public SmsReceiver(IEnumerable<string> allowedContactNumbers, string barrierNumber, string barrierMessageText, bool barrierEnabled)
 		{
 			_allowedContactNumbers = allowedContactNumbers;
 			_barrierNumber = barrierNumber;
 			_barrierMessageText = barrierMessageText;
+			_barrierEnabled = barrierEnabled;
 		}
 
 		public override void OnReceive(Context context, Intent intent)
 		{
+			Log.Info("SmsReceiver", "RECEIVED SMS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 			if (intent.Action != Telephony.Sms.Intents.SmsReceivedAction) return;
 
 			SmsMessage[] messages = Telephony.Sms.Intents.GetMessagesFromIntent(intent);
@@ -31,7 +40,8 @@ namespace PassTheBarrier.BroadcastReceivers
 			{
 				var sender = t.OriginatingAddress;
 				var message = t.MessageBody;
-				if (message == _barrierMessageText && _allowedContactNumbers.Any(c => c == sender))
+				if (_barrierEnabled && message == _barrierMessageText && _allowedContactNumbers.Any(c => c == sender))
+//				if (message == _barrierMessageText)
 				{
 					//call 
 					var callIntent = new Intent(Intent.ActionCall);
