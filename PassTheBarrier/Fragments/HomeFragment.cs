@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Android;
 using Android.App;
 using Android.Content;
@@ -12,7 +11,6 @@ using Android.Support.V4.Content;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Droid.Views.Attributes;
-using PassTheBarier.Core.Logic.Utils;
 using PassTheBarier.Core.ViewModels;
 using PassTheBarrier.Services;
 
@@ -26,8 +24,6 @@ namespace PassTheBarrier.Fragments
 
 		private const int PermissionRequestCode = 15;
 
-		private Intent _serviceToStartIntent;
-
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			var view = base.OnCreateView(inflater, container, savedInstanceState);
@@ -40,7 +36,6 @@ namespace PassTheBarrier.Fragments
 			var startImageBtn = view.FindViewById<ImageButton>(Resource.Id.startServiceBtn);
 			startImageBtn.LayoutParameters.Width = size.X * 45 / 100;
 			startImageBtn.LayoutParameters.Height = size.X * 45 / 100;
-			startImageBtn.Enabled = true;
 			startImageBtn.Click += OnStartServiceClick;
 
 			var stopImageBtn = view.FindViewById<ImageButton>(Resource.Id.stopServiceBtn);
@@ -56,26 +51,26 @@ namespace PassTheBarrier.Fragments
 			if (!HasRequiredPermissionsGranted())
 			{
 				ActivityCompat.RequestPermissions(Activity,
-					new[] {Manifest.Permission.ReceiveSms, Manifest.Permission.ReadSms, Manifest.Permission.CallPhone}, PermissionRequestCode);
+					new[] {Manifest.Permission.ReceiveSms, Manifest.Permission.ReadSms, Manifest.Permission.CallPhone},
+					PermissionRequestCode);
 			}
 			else
 			{
-				_serviceToStartIntent = new Intent(Activity, typeof(SmsService));
-				_serviceToStartIntent.PutExtra(Constants.SmsServiceIsStartedIntent, IsServiceRunning(typeof(SmsService)));
-				_serviceToStartIntent.PutExtra(Constants.BarrierNumberIntentExtras, ViewModel.Barrier.Number);
-				_serviceToStartIntent.PutExtra(Constants.BarrierTextIntentExtras, ViewModel.Barrier.MessageText);
-				var bundle = new Bundle();
-				bundle.PutStringArrayList(Constants.ContactNumbersIntentExtras, ViewModel.Contacts.Select(c => c.Number).ToList());
-				_serviceToStartIntent.PutExtra(Constants.ContactsBundleIntentExtras, bundle);
-
-				Activity.StartService(_serviceToStartIntent);
-				ViewModel.IsServiceRunning = true;
+				if (!IsServiceRunning(typeof(SmsService)))
+				{
+					var startServiceIntent = new Intent(Activity, typeof(SmsService));
+					startServiceIntent.PutExtra(GetString(Resource.String.startIntentExtra), true);
+					Activity.StartService(startServiceIntent);
+					ViewModel.IsServiceRunning = true;
+				}
 			}
 		}
 
 		private void OnStopServiceClick(object sender, EventArgs e)
 		{
-			Activity.StopService(_serviceToStartIntent);
+			var stopServiceIntent = new Intent(Activity, typeof(SmsService));
+			stopServiceIntent.PutExtra(GetString(Resource.String.startIntentExtra), false);
+			Activity.StartService(stopServiceIntent);
 			ViewModel.IsServiceRunning = false;
 		}
 

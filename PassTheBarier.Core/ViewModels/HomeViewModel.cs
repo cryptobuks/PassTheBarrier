@@ -56,9 +56,9 @@ namespace PassTheBarier.Core.ViewModels
 
 		public override async Task Initialize()
 		{
-			await LoadData();
-
 			await base.Initialize();
+
+			await LoadData();
 		}
 
 		private void OnBarrierMessageReceived(BarrierMessage barrierMessage)
