@@ -7,4 +7,7 @@
   <string name="barrier">Barrier</string>
   <string name="contact">Contact</string>
   <string name="about">About</string>
+  <string name="startIntentExtra">start</string>
+  <string name="serviceRunningNotificationTitle">Pass the barrier</string>
+  <string name="serviceRunningNotificationText">Service is running. Tap to open the app.</string>
 </resources>

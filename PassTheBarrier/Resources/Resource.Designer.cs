@@ -7182,6 +7182,15 @@ namespace PassTheBarrier
 			// aapt resource value: 0x7f090013
 			public const int search_menu_title = 2131296275;
 			
+			// aapt resource value: 0x7f090035
+			public const int serviceRunningNotificationText = 2131296309;
+			
+			// aapt resource value: 0x7f090034
+			public const int serviceRunningNotificationTitle = 2131296308;
+			
+			// aapt resource value: 0x7f090033
+			public const int startIntentExtra = 2131296307;
+			
 			// aapt resource value: 0x7f090014
 			public const int status_bar_notification_info_overflow = 2131296276;
 			

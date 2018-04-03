@@ -16,8 +16,7 @@ namespace PassTheBarier.Core.Logic.Mappers
 			{
 				Id = barrier.Id,
 				Number = barrier.Number,
-				MessageText = barrier.MessageText,
-				Enabled = barrier.Enabled
+				MessageText = barrier.MessageText
 			};
 		}
 
@@ -32,8 +31,7 @@ namespace PassTheBarier.Core.Logic.Mappers
 			{
 				Id = barrier.Id,
 				Number = barrier.Number,
-				MessageText = barrier.MessageText,
-				Enabled = barrier.Enabled
+				MessageText = barrier.MessageText
 			};
 		}
 	}

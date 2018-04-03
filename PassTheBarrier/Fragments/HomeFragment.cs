@@ -24,22 +24,11 @@ namespace PassTheBarrier.Fragments
 
 		private const int PermissionRequestCode = 15;
 
-		private Intent _serviceIntent;
-
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-			_serviceIntent = new Intent(Activity, typeof(SmsService));
-			var isRunning = IsServiceRunning(typeof(SmsService));
-//			if (ViewModel.Barrier != null && ViewModel.Barrier.Enabled && !IsServiceRunning(typeof(SmsService)))
-//			{
-//				Activity.StartService(_serviceIntent);
-//			}
-			if (!IsServiceRunning(typeof(SmsService)))
-			{
-				Activity.StartService(_serviceIntent);
-			}
+			ViewModel.IsServiceRunning = IsServiceRunning(typeof(SmsService));
 
 			Point size = new Point();
 			Activity.WindowManager.DefaultDisplay.GetSize(size);
@@ -57,36 +46,32 @@ namespace PassTheBarrier.Fragments
 			return view;
 		}
 
-		public override void OnDestroy()
-		{
-			if (ViewModel.IsServiceRunning)
-			{
-				Activity.StopService(_serviceIntent);
-			}
-			base.OnDestroy();
-		}
-
 		private void OnStartServiceClick(object sender, EventArgs e)
 		{
 			if (!HasRequiredPermissionsGranted())
 			{
 				ActivityCompat.RequestPermissions(Activity,
-					new[] {Manifest.Permission.ReceiveSms, Manifest.Permission.ReadSms, Manifest.Permission.CallPhone}, PermissionRequestCode);
+					new[] {Manifest.Permission.ReceiveSms, Manifest.Permission.ReadSms, Manifest.Permission.CallPhone},
+					PermissionRequestCode);
 			}
 			else
 			{
-				ViewModel.TriggerBarrierStateCommand.Execute();
 				if (!IsServiceRunning(typeof(SmsService)))
 				{
-					Activity.StartService(_serviceIntent);
+					var startServiceIntent = new Intent(Activity, typeof(SmsService));
+					startServiceIntent.PutExtra(GetString(Resource.String.startIntentExtra), true);
+					Activity.StartService(startServiceIntent);
+					ViewModel.IsServiceRunning = true;
 				}
 			}
 		}
 
 		private void OnStopServiceClick(object sender, EventArgs e)
 		{
-			Activity.StopService(_serviceIntent);
-			ViewModel.TriggerBarrierStateCommand.Execute();
+			var stopServiceIntent = new Intent(Activity, typeof(SmsService));
+			stopServiceIntent.PutExtra(GetString(Resource.String.startIntentExtra), false);
+			Activity.StartService(stopServiceIntent);
+			ViewModel.IsServiceRunning = false;
 		}
 
 		private bool IsServiceRunning(Type classTypeof)

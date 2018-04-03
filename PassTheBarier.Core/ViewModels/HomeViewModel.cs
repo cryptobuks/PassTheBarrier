@@ -36,14 +36,11 @@ namespace PassTheBarier.Core.ViewModels
 			_modalLogic = modalLogic;
 
 			LoadDataCommand = new MvxAsyncCommand(LoadData);
-			TriggerBarrierStateCommand = new MvxAsyncCommand(TriggerBarrierState);
 			_barrierSubscriptionToken = messenger.Subscribe<BarrierMessage>(OnBarrierMessageReceived);
 			_contactsSubscriptionToken = messenger.Subscribe<ContactsMessage>(OnContactsMessageReceived);
 		}
 
 		public IMvxAsyncCommand LoadDataCommand { get; set; }
-
-		public IMvxAsyncCommand TriggerBarrierStateCommand { get; set; }
 
 		private bool _isServiceRunning;
 
@@ -79,18 +76,7 @@ namespace PassTheBarier.Core.ViewModels
 			_modalLogic.DisplayLoading();
 			Barrier = await _barrierLogic.GetBarrierAsync();
 			Contacts = await _contactLogic.GetAllAsync();
-			if (Barrier != null)
-			{
-				IsServiceRunning = Barrier.Enabled;
-			}
 			_modalLogic.HideLoading();
-		}
-
-		private async Task TriggerBarrierState()
-		{
-			Barrier.Enabled = !Barrier.Enabled;
-			await _barrierLogic.SaveBarrierAsync(Barrier);
-			IsServiceRunning = Barrier.Enabled;
 		}
 	}
 }

@@ -1,5 +1,7 @@
-﻿using Acr.UserDialogs;
+﻿using System;
+using Acr.UserDialogs;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Support.V4.View;
@@ -10,6 +12,8 @@ using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using PassTheBarier.Core.ViewModels;
+using PassTheBarrier.Extensions;
+using PassTheBarrier.Services;
 
 namespace PassTheBarrier.Activities
 {
@@ -21,7 +25,7 @@ namespace PassTheBarrier.Activities
     {
         public DrawerLayout DrawerLayout { get; set; }
 
-        protected override void OnCreate(Bundle bundle)
+		protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
@@ -36,7 +40,7 @@ namespace PassTheBarrier.Activities
 	            ViewModel.ShowMenuViewModelCommand.Execute(null);
 				ViewModel.ShowHomeViewModelCommand.Execute(null);
             }
-        }
+		}
 
         public override void OnBackPressed()
         {
@@ -71,5 +75,14 @@ namespace PassTheBarrier.Activities
 
             CurrentFocus.ClearFocus();
         }
-    }
+
+	    protected override void OnDestroy()
+	    {
+			if (this.IsServiceRunning(typeof(SmsService)))
+		    {
+			    StopService(new Intent(this, typeof(SmsService)));
+		    }
+		    base.OnDestroy();
+	    }
+	}
 }
