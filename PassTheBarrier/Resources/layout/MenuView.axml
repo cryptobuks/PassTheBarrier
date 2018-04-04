@@ -9,6 +9,6 @@
                                               android:fitsSystemWindows="true"
                                               android:theme="@style/PassTheBarrier.ThemeToolbarNavigationView"
                                               local:itemTextColor="@color/primary_text"
-                                              local:itemIconTint="@color/icons"
+                                              local:itemIconTint="@android:color/black"
                                               local:itemBackground="@drawable/menu_background_color"
                                               local:menu="@menu/navigation_drawer" />

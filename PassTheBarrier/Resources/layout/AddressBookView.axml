@@ -30,7 +30,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="bottom|right"
     android:layout_margin="20dp"
-    android:src="@drawable/plus_icon"
+    android:src="@drawable/ic_add_black_48dp"
     local:fab_colorNormal="@color/accent"
     local:fab_colorPressed="@color/icons"
     local:fab_colorRipple="@color/primary_light" />

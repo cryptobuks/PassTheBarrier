@@ -43,6 +43,10 @@ namespace PassTheBarrier.Fragments
 			stopImageBtn.LayoutParameters.Height = size.X * 45 / 100;
 			stopImageBtn.Click += OnStopServiceClick;
 
+			var barrierImage = view.FindViewById<ImageView>(Resource.Id.barrierSettingsRequiredImageView);
+			barrierImage.LayoutParameters.Width = size.X * 45 / 100;
+			barrierImage.LayoutParameters.Height = size.X * 45 / 100;
+
 			return view;
 		}
 

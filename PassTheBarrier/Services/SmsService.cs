@@ -38,7 +38,7 @@ namespace PassTheBarrier.Services
 
 				NotificationCompat.Builder builder = new NotificationCompat.Builder(this.ApplicationContext)
 					.SetWhen(DateTime.Now.Millisecond)
-					.SetSmallIcon(Resource.Drawable.barrier_icon4)
+					.SetSmallIcon(Resource.Drawable.barrier_open_24dp)
 					.SetContentTitle(GetString(Resource.String.serviceRunningNotificationTitle))
 					.SetContentText(GetString(Resource.String.serviceRunningNotificationText))
 					.SetContentIntent(pendingIntent)

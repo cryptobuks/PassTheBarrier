@@ -6,15 +6,19 @@
     android:id="@+id/nav_items">
     <item
       android:id="@+id/nav_home"
-      android:title="Home" />
+      android:title="Home"
+      android:icon="@drawable/ic_home_black_24dp"/>
     <item
       android:id="@+id/nav_barrier"
-      android:title="Barrier" />
+      android:title="Barrier"
+      android:icon="@drawable/ic_settings_black_24dp"/>
     <item
       android:id="@+id/nav_addressBook"
-      android:title="Address Book" />
+      android:title="Address Book"
+      android:icon="@drawable/ic_account_circle_black_24dp"/>
     <item
       android:id="@+id/nav_about"
-      android:title="About" />
+      android:title="About" 
+      android:icon="@drawable/ic_info_black_24dp"/>
   </group>
 </menu>
