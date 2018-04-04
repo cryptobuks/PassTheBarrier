@@ -1,9 +1,9 @@
-﻿using System;
-using Acr.UserDialogs;
+﻿using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Views;
@@ -13,6 +13,7 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.Droid.Platform;
 using PassTheBarier.Core.ViewModels;
 using PassTheBarrier.Extensions;
+using PassTheBarrier.Fragments;
 using PassTheBarrier.Services;
 
 namespace PassTheBarrier.Activities
@@ -50,9 +51,20 @@ namespace PassTheBarrier.Activities
             }
             else
             {
-				base.OnBackPressed();
-            }
-        }
+	            var supportFragmentsCount = SupportFragmentManager.BackStackEntryCount;
+
+				if (supportFragmentsCount == 1)
+				{
+					var menuFragment = (MenuFragment)SupportFragmentManager.FindFragmentById(Resource.Id.navigation_frame);
+					var navigationMenu = menuFragment.View.FindViewById<NavigationView>(Resource.Id.navigation_view);
+
+					menuFragment.MarkSelectedMenuItem(navigationMenu.Menu.FindItem(Resource.Id.nav_home));
+
+				}
+
+	            base.OnBackPressed();
+			}
+		}
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {

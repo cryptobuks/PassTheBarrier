@@ -207,7 +207,7 @@
     <Compile Include="BroadcastReceivers\SmsReceiver.cs" />
     <Compile Include="BroadcastReceivers\ServiceRestartReceiver.cs" />
     <Compile Include="Controls\RecyclerViewOnScrollListener.cs" />
-    <Compile Include="CustomPresenter.cs" />
+    <Compile Include="Navigation\CustomPresenter.cs" />
     <Compile Include="Extensions\ContextExtensions.cs" />
     <Compile Include="Extensions\MvxRecyclerViewExtensions.cs" />
     <Compile Include="Fragments\AboutFragment.cs" />

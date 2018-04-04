@@ -33,25 +33,31 @@ namespace PassTheBarrier.Fragments
 	        homeMenuItem.SetCheckable(true);
 	        homeMenuItem.SetChecked(true);
 
+	        _previousMenuItem = homeMenuItem;
+
             return view;
         }
 
         public bool OnNavigationItemSelected(IMenuItem menuItem)
         {
-            if (_previousMenuItem != null)
-            {
-                _previousMenuItem.SetChecked(false);
-            }
-
-            menuItem.SetCheckable(true);
-            menuItem.SetChecked(true);
-
-            _previousMenuItem = menuItem;
-
+			MarkSelectedMenuItem(menuItem);
             Navigate(menuItem.ItemId);
 
             return true;
         }
+
+	    public void MarkSelectedMenuItem(IMenuItem menuItem)
+	    {
+		    if (_previousMenuItem != null)
+		    {
+			    _previousMenuItem.SetChecked(false);
+		    }
+
+		    menuItem.SetCheckable(true);
+		    menuItem.SetChecked(true);
+
+		    _previousMenuItem = menuItem;
+		}
 
         private async Task Navigate(int itemId)
         {

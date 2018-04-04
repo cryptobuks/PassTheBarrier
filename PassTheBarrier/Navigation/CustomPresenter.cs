@@ -5,7 +5,7 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using PassTheBarier.Core.Logic.Utils;
 
-namespace PassTheBarrier
+namespace PassTheBarrier.Navigation
 {
 	public class CustomPresenter : MvxAppCompatViewPresenter
 	{

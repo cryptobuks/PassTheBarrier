@@ -15,6 +15,7 @@ using MvvmCross.Droid.Support.V7.RecyclerView;
 using PassTheBarrier.MvxBindings;
 using MvvmCross.Platform;
 using PassTheBarier.Core.Data;
+using PassTheBarrier.Navigation;
 
 namespace PassTheBarrier
 {
