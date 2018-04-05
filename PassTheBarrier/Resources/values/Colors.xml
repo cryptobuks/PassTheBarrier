@@ -9,4 +9,5 @@
   <color name="icons">#FFFFFF</color>
   <color name="divider">#BDBDBD</color>
   <color name="windowBackground">#fff</color>
+  <color name="error">#cc0000</color>
 </resources>

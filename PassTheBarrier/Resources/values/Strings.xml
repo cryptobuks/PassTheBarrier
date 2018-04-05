@@ -10,4 +10,9 @@
   <string name="startIntentExtra">start</string>
   <string name="serviceRunningNotificationTitle">Pass the barrier</string>
   <string name="serviceRunningNotificationText">Service is running. Tap to open the app.</string>
+  <string name="save">SAVE</string>
+  <string name="barrierMessageText">Message text *</string>
+  <string name="barrierNumberText">Number *</string>
+  <string name="contactNameText">Name *</string>
+  <string name="contactNumberText">Number *</string>
 </resources>
