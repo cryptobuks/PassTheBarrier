@@ -12,82 +12,91 @@
     android:layout_height="match_parent"
     style="@style/PassTheBarrier.PageLayout">
 
-    <TextView
-      android:id="@+id/barrierNumberTextView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_centerHorizontal="true"
-      android:layout_above="@+id/barrierNumberEditText"
-      style="@style/PassTheBarrier.EditTextLabel"
-      android:text="@string/barrierNumberText" />
-    <EditText
-      android:id="@+id/barrierNumberEditText"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_centerHorizontal="true"
-      android:layout_above="@+id/barrierMessageTextView"
-      style="@style/PassTheBarrier.EditText"
-      local:MvxBind="Text Barrier.Number, Mode=TwoWay;" />
     <LinearLayout
-      android:id="@+id/barrierNumberErrorLayout"
+      android:id="@+id/barrierLinearLayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      android:layout_centerHorizontal="true"
-      android:layout_below="@+id/barrierNumberEditText"
-      local:MvxBind="Visible Errors['Number']">
-
-      <TextView
-        android:id="@+id/barrierNumberErrorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        style="@style/PassTheBarrier.EditTextErrorLabel"
-        local:MvxBind="Text Errors['Number'];" />
-    </LinearLayout>
-
-    <TextView
-      android:id="@+id/barrierMessageTextView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_centerHorizontal="true"
-      android:layout_above="@+id/barrierMessageEditText"
-      style="@style/PassTheBarrier.EditTextLabel"
-      android:text="@string/barrierMessageText" />
-    <EditText
-      android:id="@+id/barrierMessageEditText"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_centerHorizontal="true"
-      android:layout_above="@+id/barrierSaveBtn"
-      style="@style/PassTheBarrier.EditText"
-      local:MvxBind="Text Barrier.MessageText, Mode=TwoWay;" />
-    <LinearLayout
-      android:id="@+id/barrierMessageTextErrorLayout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      android:layout_centerHorizontal="true"
-      android:layout_below="@+id/barrierMessageEditText"
-      local:MvxBind="Visible Errors['MessageText']">
-
-      <TextView
-        android:id="@+id/barrierMessageTextErrorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        style="@style/PassTheBarrier.EditTextErrorLabel"
-        local:MvxBind="Text Errors['MessageText'];" />
-
-    </LinearLayout>
-    <Button
-      android:id="@+id/barrierSaveBtn"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:orientation="vertical"
       android:layout_alignParentBottom="true"
-      android:layout_centerHorizontal="true"
-      android:layout_marginBottom="30dp"
-      android:layout_marginTop="15dp"
-      style="@style/PassTheBarrier.Button"
-      android:text="@string/save"
-      local:MvxBind="Click SaveBarrierCommand" />
+      android:layout_centerHorizontal="true">
+
+      <TextView
+        android:id="@+id/barrierNumberTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.EditTextLabel"
+        android:text="@string/barrierNumberText" />
+      <EditText
+        android:id="@+id/barrierNumberEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.EditText"
+        local:MvxBind="Text Number, Mode=TwoWay;" />
+      <LinearLayout
+        android:id="@+id/barrierNumberErrorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        local:MvxBind="Visible Errors['Number']">
+
+        <ImageView
+          android:id="@+id/barrierNumberErrorImageView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/PassTheBarrier.EditTextErrorIcon"/>
+
+        <TextView
+          android:id="@+id/barrierNumberErrorTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/PassTheBarrier.EditTextErrorLabel"
+          local:MvxBind="Text Errors['Number'];" />
+      </LinearLayout>
+
+      <TextView
+        android:id="@+id/barrierMessageTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.EditTextLabel"
+        android:text="@string/barrierMessageText" />
+      <EditText
+        android:id="@+id/barrierMessageEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.EditText"
+        local:MvxBind="Text MessageText, Mode=TwoWay;" />
+      <LinearLayout
+        android:id="@+id/barrierMessageTextErrorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        local:MvxBind="Visible Errors['MessageText']">
+
+        <ImageView
+          android:id="@+id/barrierMessageErrorImageView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/PassTheBarrier.EditTextErrorIcon"/>
+
+        <TextView
+          android:id="@+id/barrierMessageTextErrorTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/PassTheBarrier.EditTextErrorLabel"
+          local:MvxBind="Text Errors['MessageText'];" />
+
+      </LinearLayout>
+      <Button
+        android:id="@+id/barrierSaveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="15dp"
+        style="@style/PassTheBarrier.Button"
+        android:text="@string/save"
+        local:MvxBind="Click SaveBarrierCommand" />
+
+    </LinearLayout>
   </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

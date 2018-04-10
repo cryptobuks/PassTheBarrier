@@ -98,7 +98,7 @@ namespace PassTheBarier.Core.Logic.ResourcesFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Field required.
+        ///   Looks up a localized string similar to Field is required.
         /// </summary>
         internal static string FieldRequired {
             get {

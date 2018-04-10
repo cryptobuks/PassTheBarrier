@@ -11,48 +11,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/PassTheBarrier.PageLayout">
+    <LinearLayout
+      android:id="@+id/contactLinearLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true">
       <TextView
         android:id="@+id/contactNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/contactNameEditText"
-        style="@style/PassTheBarrier.EditTextLabel" 
+        style="@style/PassTheBarrier.EditTextLabel"
         android:text="@string/contactNameText"/>
       <EditText
         android:id="@+id/contactNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/PassTheBarrier.EditText"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/contactNumberTextView"
-        local:MvxBind="Text Contact.Name, Mode=TwoWay; Error Errors['Name'];" />
+        local:MvxBind="Text Name, Mode=TwoWay;" />
+      <LinearLayout
+        android:id="@+id/contactNameErrorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        local:MvxBind="Visible Errors['Name']">
+
+        <ImageView
+          android:id="@+id/contactNameErrorImageView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/PassTheBarrier.EditTextErrorIcon"/>
+        <TextView
+          android:id="@+id/contactNameErrorTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/PassTheBarrier.EditTextErrorLabel"
+          local:MvxBind="Text Errors['Name'];" />
+      </LinearLayout>
+
       <TextView
         android:id="@+id/contactNumberTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/contactNumberEditText"
         style="@style/PassTheBarrier.EditTextLabel"
         android:text="@string/contactNumberText"/>
       <EditText
         android:id="@+id/contactNumberEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/contactSaveBtn"
-        android:layout_centerHorizontal="true"
         style="@style/PassTheBarrier.EditText"
-        local:MvxBind="Text Contact.Number, Mode=TwoWay; Error Errors['Number'];" />
+        local:MvxBind="Text Number, Mode=TwoWay;" />
+      <LinearLayout
+        android:id="@+id/contactNumberErrorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        local:MvxBind="Visible Errors['Number']">
+
+        <ImageView
+          android:id="@+id/contactNumberErrorImageView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/PassTheBarrier.EditTextErrorIcon"/>
+        <TextView
+          android:id="@+id/contactNumberErrorTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/PassTheBarrier.EditTextErrorLabel"
+          local:MvxBind="Text Errors['Number'];" />
+      </LinearLayout>
+
       <Button
         android:id="@+id/contactSaveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:layout_marginBottom="30dp"
         android:layout_marginTop="15dp"
         style="@style/PassTheBarrier.Button"
         android:text="@string/save"
         local:MvxBind="Click SaveContactCommand" />
+    </LinearLayout>
+
   </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

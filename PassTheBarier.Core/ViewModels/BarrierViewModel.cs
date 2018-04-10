@@ -33,16 +33,39 @@ namespace PassTheBarier.Core.ViewModels
 			LoadBarrierCommand = new MvxAsyncCommand(LoadBarrier);
 		}
 
-		private BarrierModel _barrier;
-		public BarrierModel Barrier
-		{
-			get => _barrier;
-			set
-			{
-				_barrier = value;
-				RaisePropertyChanged(() => Barrier);
+	    private string _number;
+	    public string Number
+	    {
+		    get => _number;
+		    set
+		    {
+			    _number = value;
+				RaisePropertyChanged(() => Number);
+			    if (_isSubmitted)
+			    {
+				    IsValid();
+			    }
+		    }
+	    }
+
+
+	    private string _messageText;
+	    public string MessageText
+	    {
+		    get => _messageText;
+		    set
+		    {
+			    _messageText = value;
+				RaisePropertyChanged(() => MessageText);
+			    if (_isSubmitted)
+			    {
+				    IsValid();
+			    }
 			}
-		}
+	    }
+
+		private BarrierModel _barrier;
+	    private bool _isSubmitted;
 
 	    public override Task Initialize()
 	    {
@@ -60,18 +83,23 @@ namespace PassTheBarier.Core.ViewModels
 			{
 				barrier = new BarrierModel();
 			}
-			Barrier = barrier;
+			_barrier = barrier;
+			Number = _barrier.Number;
+			MessageText = _barrier.MessageText;
 		}
 
 		private async Task SaveBarrier()
 		{
+			_isSubmitted = true;
 			if (IsValid())
 			{
 				_modalLogic.DisplayLoading();
-				await _barrierLogic.SaveBarrierAsync(Barrier);
+				_barrier.Number = Number;
+				_barrier.MessageText = MessageText;
+				await _barrierLogic.SaveBarrierAsync(_barrier);
 				var message = new BarrierMessage(
 					this,
-					Barrier
+					_barrier
 				);
 				_messenger.Publish(message);
 				_modalLogic.HideLoading();
@@ -86,11 +114,11 @@ namespace PassTheBarier.Core.ViewModels
 		    var validator = new ValidationHelper();
 		    var regex = new Regex(Constants.NumberRegex);
 
-		    validator.AddRequiredRule(() => Barrier.Number, Messages.FieldRequired);
-		    validator.AddRule(() => Barrier.Number,
-			    () => RuleResult.Assert(regex.IsMatch(Barrier.Number), Messages.InvalidNumber));
+		    validator.AddRequiredRule(() => Number, Messages.FieldRequired);
+		    validator.AddRule(() => Number,
+			    () => RuleResult.Assert(regex.IsMatch(Number), Messages.InvalidNumber));
 
-		    validator.AddRequiredRule(() => Barrier.MessageText, Messages.FieldRequired);
+		    validator.AddRequiredRule(() => MessageText, Messages.FieldRequired);
 
 		    var result = validator.ValidateAll();
 		    Errors = result.AsObservableDictionary();

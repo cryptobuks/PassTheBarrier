@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using PassTheBarier.Core.Logic.Interfaces;
+using PassTheBarier.Core.Logic.Utils;
 
 namespace PassTheBarier.Core.Logic.Implementations
 {
@@ -16,7 +17,8 @@ namespace PassTheBarier.Core.Logic.Implementations
 		{
 			var toastConfig = new ToastConfig(message);
 			toastConfig.SetDuration(2500);
-			toastConfig.SetBackgroundColor(System.Drawing.Color.FromArgb(12, 131, 193));
+			toastConfig.SetBackgroundColor(Constants.AccentColor); //accent color
+			toastConfig.SetMessageTextColor(Constants.TextColor);
 			_userDialogs.Toast(toastConfig);
 
 			return 2500;

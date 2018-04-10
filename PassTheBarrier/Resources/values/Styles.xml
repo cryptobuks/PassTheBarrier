@@ -44,7 +44,8 @@
     <item name="android:fontFamily">Roboto Regular</item>
     <item name="android:textColor">@color/secondary_text</item>
     <item name="android:paddingTop">16dp</item>
-    <item name="android:paddingBottom">8dp</item>
+<!--    <item name="android:paddingBottom">8dp</item>-->
+    <item name="android:paddingLeft">3dp</item>
   </style>
 
   <style name="PassTheBarrier.EditText" parent="">
@@ -61,7 +62,13 @@
     <item name="android:textSize">12sp</item>
     <item name="android:fontFamily">Roboto Regular</item>
     <item name="android:textColor">@color/error</item>
-    <item name="android:paddingTop">8dp</item>
+    <item name="android:paddingTop">2dp</item>
+  </style>
+
+  <style name="PassTheBarrier.EditTextErrorIcon" parent="">
+<!--    <item name="android:paddingTop">8dp</item>-->
+    <item name="android:paddingRight">7dp</item>
+    <item name="android:src">@drawable/ic_error_outline_black_18dp</item>
   </style>
 
   <style name="PassTheBarrier.PrimaryText" parent="">

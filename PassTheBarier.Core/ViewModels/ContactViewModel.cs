@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
@@ -28,49 +29,74 @@ namespace PassTheBarier.Core.ViewModels
 	        SaveContactCommand = new MvxAsyncCommand(SaveContact);
         }
 
-        private ContactModel _contact;
-        public ContactModel Contact
-        {
-            get => _contact;
-	        set
-            {
-                _contact = value;
-                RaisePropertyChanged(() => Contact);
-            }
-        }
+	    private string _name;
+	    public string Name
+	    {
+		    get => _name;
+		    set
+		    {
+			    _name = value;
+				RaisePropertyChanged(() => Name);
+			    if (_isSubmitted)
+			    {
+				    IsValid();
+			    }
+		    }
+	    }
 
-	    private bool _addMode;
+	    private string _number;
+	    public string Number
+	    {
+			get => _number;
+		    set
+		    {
+			    _number = value;
+				RaisePropertyChanged(() => Number);
+			    if (_isSubmitted)
+			    {
+				    IsValid();
+			    }
+		    }
+	    }
+
+	    private ContactModel _contact;
+		private bool _addMode;
+	    private bool _isSubmitted;
 
         public override void Prepare(ContactModel selectedContact)
         {
 	        if (selectedContact == null)
 	        {
 		        _addMode = true;
-				Contact = new ContactModel();
-	        }
+				_contact = new ContactModel();
+			}
 	        else
 	        {
-		        Contact = selectedContact;
-			}
+		        _contact = selectedContact;
+	        }
+	        Name = _contact.Name;
+	        Number = _contact.Number;
 		}
 
 	    private async Task SaveContact()
 	    {
-		    if (IsValid())
+		    _isSubmitted = true;
+
+			if (IsValid())
 		    {
 			    _modalLogic.DisplayLoading();
 			    if (_addMode)
 			    {
-				    Contact = await _contactLogic.AddAsync(Contact);
+				    _contact = await _contactLogic.AddAsync(_contact);
 			    }
 			    else
 			    {
-				    Contact = await _contactLogic.UpdateAsync(Contact);
+				    _contact = await _contactLogic.UpdateAsync(_contact);
 				}
 				_modalLogic.HideLoading();
 			    _modalLogic.DisplayToast(Messages.ContactSavedSuccessfully);
 
-			    await _navigationService.Close(this, new ViewModelResult<ContactModel>(Contact));
+			    await _navigationService.Close(this, new ViewModelResult<ContactModel>(_contact));
 		    }
 		}
 
@@ -79,11 +105,11 @@ namespace PassTheBarier.Core.ViewModels
 			var validator = new ValidationHelper();
 		    var regex = new Regex(Constants.NumberRegex);
 
-		    validator.AddRequiredRule(() => Contact.Name, Messages.FieldRequired);
+		    validator.AddRequiredRule(() => Name, Messages.FieldRequired);
 
-			validator.AddRequiredRule(() => Contact.Number, Messages.FieldRequired);
-		    validator.AddRule(() => Contact.Number,
-			    () => RuleResult.Assert(regex.IsMatch(Contact.Number), Messages.InvalidNumber));
+			validator.AddRequiredRule(() => Number, Messages.FieldRequired);
+		    validator.AddRule(() => Number,
+			    () => RuleResult.Assert(regex.IsMatch(Number), Messages.InvalidNumber));
 
 		    var result = validator.ValidateAll();
 		    Errors = result.AsObservableDictionary();
