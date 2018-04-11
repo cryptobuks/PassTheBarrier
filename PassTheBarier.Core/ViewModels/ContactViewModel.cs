@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
@@ -69,6 +68,7 @@ namespace PassTheBarier.Core.ViewModels
 	        {
 		        _addMode = true;
 				_contact = new ContactModel();
+
 			}
 	        else
 	        {
@@ -83,8 +83,11 @@ namespace PassTheBarier.Core.ViewModels
 		    _isSubmitted = true;
 
 			if (IsValid())
-		    {
-			    _modalLogic.DisplayLoading();
+			{
+				_contact.Number = Number;
+				_contact.Name = Name;
+
+				_modalLogic.DisplayLoading();
 			    if (_addMode)
 			    {
 				    _contact = await _contactLogic.AddAsync(_contact);
