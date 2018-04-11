@@ -4,6 +4,7 @@ using MvvmCross.Droid.Views;
 using PassTheBarier.Core;
 using System.Collections.Generic;
 using System.Reflection;
+using Android.App;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
@@ -15,7 +16,9 @@ using MvvmCross.Droid.Support.V7.RecyclerView;
 using PassTheBarrier.MvxBindings;
 using MvvmCross.Platform;
 using PassTheBarier.Core.Data;
+using PassTheBarier.Core.Logic.Utils;
 using PassTheBarrier.Navigation;
+using PassTheBarrier.Utils;
 
 namespace PassTheBarrier
 {
@@ -65,6 +68,7 @@ namespace PassTheBarrier
 		protected override void InitializeFirstChance()
 		{
 			Mvx.RegisterType<ISqliteConnectionFactory, SqliteConnectionFactory>();
+			Mvx.RegisterType<IAppInfo, AppInfo>();
 		}
 	}
 }

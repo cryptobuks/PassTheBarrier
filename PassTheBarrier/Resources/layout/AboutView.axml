@@ -6,21 +6,70 @@
                                                  android:layout_height="match_parent">
   <include
     layout="@layout/toolbar_actionbar" />
-
   <RelativeLayout
+    android:id="@+id/aboutMainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    local:layout_behavior="@string/appbar_scrolling_view_behavior">
+    style="@style/PassTheBarrier.PageLayout">
 
-    <TextView
-      android:text="About"
-      android:textAppearance="?android:attr/textAppearanceMedium"
-      android:layout_width="wrap_content"
+    <LinearLayout
+      android:id="@+id/aboutLinearLayout"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:id="@+id/aboutText"
-      android:gravity="left"
-      android:paddingTop="20dp" />
+      android:orientation="vertical"
+      android:layout_centerInParent="true"
+      android:layout_centerHorizontal="true"
+      android:layout_centerVertical="true">
 
+      <ImageView
+        android:id="@+id/aboutImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/barrier_open_64dp"
+        android:layout_gravity="center"/>
+
+      <TextView
+        android:id="@+id/aboutTitleView"
+        android:text="@string/aboutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        style="@style/PassTheBarrier.PrimaryText" />
+
+      <TextView
+        android:id="@+id/aboutDescriptionView"
+        android:text="@string/aboutDescription"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.SecondaryText" />
+
+      <LinearLayout
+        android:id="@+id/aboutVersionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+          android:id="@+id/aboutTitleView"
+          android:text="@string/versionLabel"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          style="@style/PassTheBarrier.PrimaryText" />
+
+        <TextView
+          android:id="@+id/aboutTitleView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          style="@style/PassTheBarrier.PrimaryText"
+          local:MvxBind="Text ApplicationVersion" />
+
+      </LinearLayout>
+
+    </LinearLayout>
   </RelativeLayout>
-
 </android.support.design.widget.CoordinatorLayout>

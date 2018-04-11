@@ -1,15 +1,11 @@
-﻿using SQLite;
-using System.IO;
+﻿using System.IO;
+using PassTheBarier.Core.Data;
+using SQLite;
 
-namespace PassTheBarier.Core.Data
+namespace PassTheBarrier.Utils
 {
     public class SqliteConnectionFactory : ISqliteConnectionFactory
     {
-		public SqliteConnectionFactory()
-		{
-
-		}
-
         public SQLiteConnection GetConnection(string databaseName)
         {
 			var connectionString = new SQLiteConnectionString(GetDbPath(databaseName), false);

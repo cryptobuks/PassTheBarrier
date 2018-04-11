@@ -74,6 +74,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Logic\Utils\IAppInfo.cs" />
     <Compile Include="Messenger\BarrierMessage.cs" />
     <Compile Include="Messenger\ContactsMessage.cs" />
     <Compile Include="Navigation\CleartStackPresentationBundle.cs" />
