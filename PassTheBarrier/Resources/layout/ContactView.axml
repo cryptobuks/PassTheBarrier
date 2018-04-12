@@ -51,6 +51,21 @@
       </LinearLayout>
 
       <TextView
+        android:id="@+id/contactPrefixTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.EditTextLabel"
+        android:text="@string/contactPrefixText"/>
+      <MvxSpinner
+        android:id="@+id/contactPrefixSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.Spinner"
+        local:MvxItemTemplate="@layout/spinner_item"
+        local:MvxDropDownItemTemplate="@layout/spinner_dropdown"
+        local:MvxBind="ItemsSource NumberPrefixes; SelectedItem NumberPrefix;" />
+
+      <TextView
         android:id="@+id/contactNumberTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,6 +77,7 @@
         android:layout_height="wrap_content"
         style="@style/PassTheBarrier.EditText"
         local:MvxBind="Text Number, Mode=TwoWay;" />
+
       <LinearLayout
         android:id="@+id/contactNumberErrorLayout"
         android:layout_width="match_parent"

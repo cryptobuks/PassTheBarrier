@@ -21,39 +21,6 @@
       android:layout_centerHorizontal="true">
 
       <TextView
-        android:id="@+id/barrierNumberTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/PassTheBarrier.EditTextLabel"
-        android:text="@string/barrierNumberText" />
-      <EditText
-        android:id="@+id/barrierNumberEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/PassTheBarrier.EditText"
-        local:MvxBind="Text Number, Mode=TwoWay;" />
-      <LinearLayout
-        android:id="@+id/barrierNumberErrorLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        local:MvxBind="Visible Errors['Number']">
-
-        <ImageView
-          android:id="@+id/barrierNumberErrorImageView"
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          style="@style/PassTheBarrier.EditTextErrorIcon"/>
-
-        <TextView
-          android:id="@+id/barrierNumberErrorTextView"
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          style="@style/PassTheBarrier.EditTextErrorLabel"
-          local:MvxBind="Text Errors['Number'];" />
-      </LinearLayout>
-
-      <TextView
         android:id="@+id/barrierMessageTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,7 +43,7 @@
           android:id="@+id/barrierMessageErrorImageView"
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
-          style="@style/PassTheBarrier.EditTextErrorIcon"/>
+          style="@style/PassTheBarrier.EditTextErrorIcon" />
 
         <TextView
           android:id="@+id/barrierMessageTextErrorTextView"
@@ -86,6 +53,55 @@
           local:MvxBind="Text Errors['MessageText'];" />
 
       </LinearLayout>
+
+      <TextView
+        android:id="@+id/barrierPrefixTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.EditTextLabel"
+        android:text="@string/contactPrefixText" />
+      <MvxSpinner
+        android:id="@+id/barrierPrefixSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.Spinner"
+        local:MvxItemTemplate="@layout/spinner_item"
+        local:MvxDropDownItemTemplate="@layout/spinner_dropdown"
+        local:MvxBind="ItemsSource NumberPrefixes; SelectedItem NumberPrefix;" />
+
+      <TextView
+        android:id="@+id/barrierNumberTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.EditTextLabel"
+        android:text="@string/barrierNumberText" />
+      <EditText
+        android:id="@+id/barrierNumberEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.EditText"
+        local:MvxBind="Text Number, Mode=TwoWay;" />
+      <LinearLayout
+        android:id="@+id/barrierNumberErrorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        local:MvxBind="Visible Errors['Number']">
+
+        <ImageView
+          android:id="@+id/barrierNumberErrorImageView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/PassTheBarrier.EditTextErrorIcon" />
+
+        <TextView
+          android:id="@+id/barrierNumberErrorTextView"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          style="@style/PassTheBarrier.EditTextErrorLabel"
+          local:MvxBind="Text Errors['Number'];" />
+      </LinearLayout>
+
       <Button
         android:id="@+id/barrierSaveBtn"
         android:layout_width="wrap_content"

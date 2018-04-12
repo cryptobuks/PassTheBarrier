@@ -117,8 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AContactAlreadyExists" xml:space="preserve">
+  <data name="AContactWithThatNameAlreadyExists" xml:space="preserve">
     <value>A contact with that name already exists.</value>
+  </data>
+  <data name="AContactWithThatNumberAlreadyExists" xml:space="preserve">
+    <value>A contact with than number already exists.</value>
   </data>
   <data name="BarrierSavedSuccessfully" xml:space="preserve">
     <value>Barrier saved successfully</value>
@@ -129,10 +132,19 @@
   <data name="ContactSavedSuccessfully" xml:space="preserve">
     <value>Contact saved successfully</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="FieldRequired" xml:space="preserve">
     <value>Field is required</value>
   </data>
   <data name="InvalidNumber" xml:space="preserve">
     <value>Invalid number</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
 </root>

@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
@@ -14,26 +16,27 @@ namespace PassTheBarier.Core.ViewModels
 {
     public class BarrierViewModel : InputViewModel
     {
-		private readonly IModalLogic _modalLogic;
-		private readonly IBarrierLogic _barrierLogic;
+	    private readonly IActionHelper _actionHelper;
+	    private readonly IBarrierLogic _barrierLogic;
 	    private readonly IMvxNavigationService _navigationService;
 	    private readonly IMvxMessenger _messenger;
 
 		public IMvxCommand LoadBarrierCommand { get; }
 		public IMvxCommand SaveBarrierCommand { get; }
 
-		public BarrierViewModel(IBarrierLogic barrierLogic, IModalLogic modalLogic, IMvxNavigationService navigationService, IMvxMessenger messenger)
+		public BarrierViewModel(IBarrierLogic barrierLogic, IActionHelper actionHelper, IMvxNavigationService navigationService, IMvxMessenger messenger)
 		{
 			_barrierLogic = barrierLogic;
-			_modalLogic = modalLogic;
+			_actionHelper = actionHelper;
 			_navigationService = navigationService;
 			_messenger = messenger;
 
-			SaveBarrierCommand = new MvxAsyncCommand(SaveBarrier);
-			LoadBarrierCommand = new MvxAsyncCommand(LoadBarrier);
+			SaveBarrierCommand = new MvxAsyncCommand(() => _actionHelper.DoAction(SaveBarrier));
+			LoadBarrierCommand = new MvxAsyncCommand(() => actionHelper.DoAction(LoadBarrier));
+			NumberPrefixes = NumberPrefixProvider.GetNumberPrefixes();
 		}
 
-	    private string _number;
+		private string _number;
 	    public string Number
 	    {
 		    get => _number;
@@ -48,8 +51,20 @@ namespace PassTheBarier.Core.ViewModels
 		    }
 	    }
 
+	    private NumberPrefixModel _numberPrefix;
 
-	    private string _messageText;
+	    public NumberPrefixModel NumberPrefix
+	    {
+		    get => _numberPrefix;
+		    set
+		    {
+			    _numberPrefix = value;
+			    RaisePropertyChanged(() => NumberPrefix);
+		    }
+	    }
+
+		private string _messageText;
+
 	    public string MessageText
 	    {
 		    get => _messageText;
@@ -64,6 +79,18 @@ namespace PassTheBarier.Core.ViewModels
 			}
 	    }
 
+	    private IList<NumberPrefixModel> _numberPrefixes;
+
+	    public IList<NumberPrefixModel> NumberPrefixes
+	    {
+		    get => _numberPrefixes;
+		    set
+		    {
+			    _numberPrefixes = value;
+			    RaisePropertyChanged(() => NumberPrefixes);
+		    }
+	    }
+
 		private BarrierModel _barrier;
 	    private bool _isSubmitted;
 
@@ -76,13 +103,17 @@ namespace PassTheBarier.Core.ViewModels
 
 	    private async Task LoadBarrier()
 		{
-			_modalLogic.DisplayLoading();
 			var barrier = await _barrierLogic.GetBarrierAsync();
-			_modalLogic.HideLoading();
 			if (barrier == null)
 			{
 				barrier = new BarrierModel();
+				NumberPrefix = NumberPrefixes.FirstOrDefault();
 			}
+			else
+			{
+				NumberPrefix = NumberPrefixes.FirstOrDefault(n => n.Prefix == barrier.Prefix);
+			}
+
 			_barrier = barrier;
 			Number = _barrier.Number;
 			MessageText = _barrier.MessageText;
@@ -93,17 +124,16 @@ namespace PassTheBarier.Core.ViewModels
 			_isSubmitted = true;
 			if (IsValid())
 			{
-				_modalLogic.DisplayLoading();
 				_barrier.Number = Number;
 				_barrier.MessageText = MessageText;
+				_barrier.Prefix = NumberPrefix.Prefix;
 				await _barrierLogic.SaveBarrierAsync(_barrier);
 				var message = new BarrierMessage(
 					this,
 					_barrier
 				);
 				_messenger.Publish(message);
-				_modalLogic.HideLoading();
-				_modalLogic.DisplayToast(Messages.BarrierSavedSuccessfully);
+				_actionHelper.DisplayToast(Messages.BarrierSavedSuccessfully);
 
 				await _navigationService.Close(this);
 			}

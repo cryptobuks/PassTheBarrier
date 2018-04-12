@@ -6,6 +6,7 @@ using PassTheBarier.Core.Data.Repositories.Implementations;
 using PassTheBarier.Core.Data.Repositories.Interfaces;
 using PassTheBarier.Core.Logic.Implementations;
 using PassTheBarier.Core.Logic.Interfaces;
+using PassTheBarier.Core.Logic.Utils;
 using PassTheBarier.Core.ViewModels;
 
 namespace PassTheBarier.Core
@@ -25,7 +26,7 @@ namespace PassTheBarier.Core
 
         private void InitializeLogic()
         {
-	        Mvx.RegisterType<IModalLogic, ModalLogic>();
+	        Mvx.RegisterType<IActionHelper, ActionHelper>();
             Mvx.RegisterType<IContactLogic, ContactLogic>();
 			Mvx.RegisterType<IBarrierLogic, BarrierLogic>();
 		}

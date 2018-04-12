@@ -4,15 +4,16 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using PassTheBarier.Core.Logic.Interfaces;
 using PassTheBarier.Core.Logic.Models;
+using PassTheBarier.Core.Logic.Utils;
 using PassTheBarier.Core.Messenger;
 
 namespace PassTheBarier.Core.ViewModels
 {
 	public class HomeViewModel : BaseViewModel
 	{
-		private readonly IModalLogic _modalLogic;
 		private readonly IBarrierLogic _barrierLogic;
 		private readonly IContactLogic _contactLogic;
+		private readonly IActionHelper _actionHelper;
 		private readonly MvxSubscriptionToken _barrierSubscriptionToken;
 		private readonly MvxSubscriptionToken _contactsSubscriptionToken;
 
@@ -29,13 +30,13 @@ namespace PassTheBarier.Core.ViewModels
 
 		public IEnumerable<ContactModel> Contacts { get; set; }
 
-		public HomeViewModel(IContactLogic contactLogic, IBarrierLogic barrierLogic, IModalLogic modalLogic, IMvxMessenger messenger)
+		public HomeViewModel(IContactLogic contactLogic, IBarrierLogic barrierLogic, IActionHelper actionHelper, IMvxMessenger messenger)
 		{
 			_contactLogic = contactLogic;
 			_barrierLogic = barrierLogic;
-			_modalLogic = modalLogic;
+			_actionHelper = actionHelper;
 
-			LoadDataCommand = new MvxAsyncCommand(LoadData);
+			LoadDataCommand = new MvxAsyncCommand(() => _actionHelper.DoAction(LoadData));
 			_barrierSubscriptionToken = messenger.Subscribe<BarrierMessage>(OnBarrierMessageReceived);
 			_contactsSubscriptionToken = messenger.Subscribe<ContactsMessage>(OnContactsMessageReceived);
 		}
@@ -73,10 +74,8 @@ namespace PassTheBarier.Core.ViewModels
 
 		private async Task LoadData()
 		{
-			_modalLogic.DisplayLoading();
 			Barrier = await _barrierLogic.GetBarrierAsync();
 			Contacts = await _contactLogic.GetAllAsync();
-			_modalLogic.HideLoading();
 		}
 	}
 }

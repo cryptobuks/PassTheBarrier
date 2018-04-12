@@ -61,20 +61,23 @@
     <Compile Include="Logic\Exceptions\ValidationException.cs" />
     <Compile Include="Logic\Implementations\BarrierLogic.cs" />
     <Compile Include="Logic\Implementations\ContactLogic.cs" />
-    <Compile Include="Logic\Implementations\ModalLogic.cs" />
     <Compile Include="Logic\Interfaces\IBarrierLogic.cs" />
     <Compile Include="Logic\Interfaces\IContactLogic.cs" />
-    <Compile Include="Logic\Interfaces\IModalLogic.cs" />
     <Compile Include="Logic\Mappers\BarrierMapper.cs" />
     <Compile Include="Logic\Mappers\ContactMapper.cs" />
     <Compile Include="Logic\Models\BarrierModel.cs" />
     <Compile Include="Logic\Models\ContactModel.cs" />
+    <Compile Include="Logic\Models\NumberPrefixModel.cs" />
     <Compile Include="Logic\ResourcesFiles\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Logic\Utils\ActionHelper.cs" />
+    <Compile Include="Logic\Utils\CountryEnum.cs" />
+    <Compile Include="Logic\Utils\IActionHelper.cs" />
     <Compile Include="Logic\Utils\IAppInfo.cs" />
+    <Compile Include="Logic\Utils\NumberPrefixProvider.cs" />
     <Compile Include="Messenger\BarrierMessage.cs" />
     <Compile Include="Messenger\ContactsMessage.cs" />
     <Compile Include="Navigation\CleartStackPresentationBundle.cs" />

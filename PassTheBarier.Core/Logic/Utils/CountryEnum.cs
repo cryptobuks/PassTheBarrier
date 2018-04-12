@@ -1,0 +1,34 @@
+﻿namespace PassTheBarier.Core.Logic.Utils
+{
+	public enum CountryEnum
+	{
+		Au,
+		Be,
+		Bg,
+		Ca,
+		Cn,
+		Hr,
+		Dk,
+		De,
+		Fr,
+		Gr,
+		Hu,
+		Ie,
+		It,
+		Nl,
+		No,
+		Pl,
+		Pt,
+		Ro,
+		Ru,
+		Sk,
+		Sl,
+		Es,
+		Se,
+		Ch,
+		Tr,
+		Ua,
+		Gb,
+		Us
+	}
+}

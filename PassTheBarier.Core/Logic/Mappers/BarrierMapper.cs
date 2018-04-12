@@ -15,6 +15,7 @@ namespace PassTheBarier.Core.Logic.Mappers
 			return new BarrierModel
 			{
 				Id = barrier.Id,
+				Prefix = barrier.Prefix,
 				Number = barrier.Number,
 				MessageText = barrier.MessageText
 			};
@@ -30,6 +31,7 @@ namespace PassTheBarier.Core.Logic.Mappers
 			return new Barrier
 			{
 				Id = barrier.Id,
+				Prefix = barrier.Prefix,
 				Number = barrier.Number,
 				MessageText = barrier.MessageText
 			};

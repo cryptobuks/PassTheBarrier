@@ -16,7 +16,8 @@ namespace PassTheBarier.Core.Logic.Mappers
 			{
 				Id = contact.Id,
 				Name = contact.Name,
-				Number = contact.Number
+				Number = contact.Number,
+				Prefix = contact.Prefix
 			};
 		}
 
@@ -31,7 +32,8 @@ namespace PassTheBarier.Core.Logic.Mappers
 			{
 				Id = contact.Id,
 				Name = contact.Name,
-				Number = contact.Number
+				Number = contact.Number,
+				Prefix = contact.Prefix
 			};
 		}
 	}

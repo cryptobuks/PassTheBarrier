@@ -8,5 +8,9 @@ namespace PassTheBarier.Core.Data.Repositories.Interfaces
 		Contact GetByName(string name);
 
 		Task<Contact> GetByNameAsync(string name);
+
+		Contact GetByPrefixAndNumber(string prefix, string number);
+
+		Task<Contact> GetByPrefixAndNumberAsync(string prefix, string number);
 	}
 }

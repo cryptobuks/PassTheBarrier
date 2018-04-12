@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Provider;
@@ -35,10 +33,10 @@ namespace PassTheBarrier.BroadcastReceivers
 			{
 				var sender = t.OriginatingAddress;
 				var message = t.MessageBody;
-				if (message == barrier.MessageText && contacts.Any(c => c.Number == sender))
+				if (message == barrier.MessageText && contacts.Any(c => c.Prefix + c.Number == sender))
 				{
 					var callIntent = new Intent(Intent.ActionCall);
-					callIntent.SetData(Uri.Parse("tel:" + barrier.Number));
+					callIntent.SetData(Uri.Parse("tel:" + barrier.FullNumber));
 					context.StartActivity(callIntent);
 				}
 			}

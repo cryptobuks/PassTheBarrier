@@ -64,9 +64,18 @@ namespace PassTheBarier.Core.Logic.ResourcesFiles {
         /// <summary>
         ///   Looks up a localized string similar to A contact with that name already exists..
         /// </summary>
-        internal static string AContactAlreadyExists {
+        internal static string AContactWithThatNameAlreadyExists {
             get {
-                return ResourceManager.GetString("AContactAlreadyExists", resourceCulture);
+                return ResourceManager.GetString("AContactWithThatNameAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A contact with than number already exists..
+        /// </summary>
+        internal static string AContactWithThatNumberAlreadyExists {
+            get {
+                return ResourceManager.GetString("AContactWithThatNumberAlreadyExists", resourceCulture);
             }
         }
         
@@ -98,6 +107,15 @@ namespace PassTheBarier.Core.Logic.ResourcesFiles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Field is required.
         /// </summary>
         internal static string FieldRequired {
@@ -112,6 +130,24 @@ namespace PassTheBarier.Core.Logic.ResourcesFiles {
         internal static string InvalidNumber {
             get {
                 return ResourceManager.GetString("InvalidNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading.
+        /// </summary>
+        internal static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
             }
         }
     }
