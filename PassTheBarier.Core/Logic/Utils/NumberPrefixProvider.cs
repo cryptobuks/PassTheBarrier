@@ -11,7 +11,7 @@ namespace PassTheBarier.Core.Logic.Utils
 			new NumberPrefixModel
 			{
 				Id = (int) CountryEnum.Au,
-				CountryCode = "AU",
+				CountryCode = "AT",
 				CountryName = "Austria",
 				Prefix = "+43"
 			},
@@ -25,8 +25,8 @@ namespace PassTheBarier.Core.Logic.Utils
 			new NumberPrefixModel
 			{
 				Id = (int) CountryEnum.Bg,
-				CountryCode = "Bulgaria",
-				CountryName = "BG",
+				CountryCode = "BG",
+				CountryName = "Bulgaria",
 				Prefix = "+359"
 			},
 			new NumberPrefixModel
@@ -152,7 +152,7 @@ namespace PassTheBarier.Core.Logic.Utils
 			{
 				Id = (int) CountryEnum.Sl,
 				CountryName = "Slovenia",
-				CountryCode = "SL",
+				CountryCode = "SI",
 				Prefix = "+386"
 			},
 			new NumberPrefixModel

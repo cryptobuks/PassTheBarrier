@@ -61,8 +61,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/PassTheBarrier.Spinner"
-        local:MvxItemTemplate="@layout/spinner_item"
-        local:MvxDropDownItemTemplate="@layout/spinner_dropdown"
+        local:MvxItemTemplate="@layout/spinner_prefix_item"
+        local:MvxDropDownItemTemplate="@layout/spinner_prefix_dropdown"
         local:MvxBind="ItemsSource NumberPrefixes; SelectedItem NumberPrefix;" />
 
       <TextView

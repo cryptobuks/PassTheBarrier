@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="AppStart.cs" />
+    <Compile Include="Converters\CountryFlagConverter.cs" />
     <Compile Include="Converters\NegativeBoolConverter.cs" />
     <Compile Include="Converters\NullableConverter.cs" />
     <Compile Include="Data\DataConstants.cs" />
