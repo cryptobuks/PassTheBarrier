@@ -25,7 +25,7 @@
         android:id="@+id/aboutImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/barrier_open_64dp"
+        android:src="@drawable/barrier_open_black_64dp"
         android:layout_gravity="center"/>
 
       <TextView
