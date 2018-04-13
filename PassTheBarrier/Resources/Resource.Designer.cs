@@ -4991,44 +4991,44 @@ namespace PassTheBarrier
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0c0051
-			public const int abc_background_cache_hint_selector_material_dark = 2131492945;
-			
 			// aapt resource value: 0x7f0c0052
-			public const int abc_background_cache_hint_selector_material_light = 2131492946;
+			public const int abc_background_cache_hint_selector_material_dark = 2131492946;
 			
 			// aapt resource value: 0x7f0c0053
-			public const int abc_btn_colored_borderless_text_material = 2131492947;
+			public const int abc_background_cache_hint_selector_material_light = 2131492947;
 			
 			// aapt resource value: 0x7f0c0054
-			public const int abc_btn_colored_text_material = 2131492948;
+			public const int abc_btn_colored_borderless_text_material = 2131492948;
 			
 			// aapt resource value: 0x7f0c0055
-			public const int abc_color_highlight_material = 2131492949;
+			public const int abc_btn_colored_text_material = 2131492949;
 			
 			// aapt resource value: 0x7f0c0056
-			public const int abc_hint_foreground_material_dark = 2131492950;
+			public const int abc_color_highlight_material = 2131492950;
 			
 			// aapt resource value: 0x7f0c0057
-			public const int abc_hint_foreground_material_light = 2131492951;
+			public const int abc_hint_foreground_material_dark = 2131492951;
+			
+			// aapt resource value: 0x7f0c0058
+			public const int abc_hint_foreground_material_light = 2131492952;
 			
 			// aapt resource value: 0x7f0c0001
 			public const int abc_input_method_navigation_guard = 2131492865;
 			
-			// aapt resource value: 0x7f0c0058
-			public const int abc_primary_text_disable_only_material_dark = 2131492952;
-			
 			// aapt resource value: 0x7f0c0059
-			public const int abc_primary_text_disable_only_material_light = 2131492953;
+			public const int abc_primary_text_disable_only_material_dark = 2131492953;
 			
 			// aapt resource value: 0x7f0c005a
-			public const int abc_primary_text_material_dark = 2131492954;
+			public const int abc_primary_text_disable_only_material_light = 2131492954;
 			
 			// aapt resource value: 0x7f0c005b
-			public const int abc_primary_text_material_light = 2131492955;
+			public const int abc_primary_text_material_dark = 2131492955;
 			
 			// aapt resource value: 0x7f0c005c
-			public const int abc_search_url_text = 2131492956;
+			public const int abc_primary_text_material_light = 2131492956;
+			
+			// aapt resource value: 0x7f0c005d
+			public const int abc_search_url_text = 2131492957;
 			
 			// aapt resource value: 0x7f0c0002
 			public const int abc_search_url_text_normal = 2131492866;
@@ -5039,35 +5039,38 @@ namespace PassTheBarrier
 			// aapt resource value: 0x7f0c0004
 			public const int abc_search_url_text_selected = 2131492868;
 			
-			// aapt resource value: 0x7f0c005d
-			public const int abc_secondary_text_material_dark = 2131492957;
-			
 			// aapt resource value: 0x7f0c005e
-			public const int abc_secondary_text_material_light = 2131492958;
+			public const int abc_secondary_text_material_dark = 2131492958;
 			
 			// aapt resource value: 0x7f0c005f
-			public const int abc_tint_btn_checkable = 2131492959;
+			public const int abc_secondary_text_material_light = 2131492959;
 			
 			// aapt resource value: 0x7f0c0060
-			public const int abc_tint_default = 2131492960;
+			public const int abc_tint_btn_checkable = 2131492960;
 			
 			// aapt resource value: 0x7f0c0061
-			public const int abc_tint_edittext = 2131492961;
+			public const int abc_tint_default = 2131492961;
 			
 			// aapt resource value: 0x7f0c0062
-			public const int abc_tint_seek_thumb = 2131492962;
+			public const int abc_tint_edittext = 2131492962;
 			
 			// aapt resource value: 0x7f0c0063
-			public const int abc_tint_spinner = 2131492963;
+			public const int abc_tint_seek_thumb = 2131492963;
 			
 			// aapt resource value: 0x7f0c0064
-			public const int abc_tint_switch_thumb = 2131492964;
+			public const int abc_tint_spinner = 2131492964;
 			
 			// aapt resource value: 0x7f0c0065
-			public const int abc_tint_switch_track = 2131492965;
+			public const int abc_tint_switch_thumb = 2131492965;
+			
+			// aapt resource value: 0x7f0c0066
+			public const int abc_tint_switch_track = 2131492966;
 			
 			// aapt resource value: 0x7f0c004a
 			public const int accent = 2131492938;
+			
+			// aapt resource value: 0x7f0c0051
+			public const int accent_alpha26 = 2131492945;
 			
 			// aapt resource value: 0x7f0c0005
 			public const int accent_material_dark = 2131492869;
@@ -5111,14 +5114,14 @@ namespace PassTheBarrier
 			// aapt resource value: 0x7f0c0012
 			public const int button_material_light = 2131492882;
 			
-			// aapt resource value: 0x7f0c0066
-			public const int button_text = 2131492966;
+			// aapt resource value: 0x7f0c0067
+			public const int button_text = 2131492967;
 			
 			// aapt resource value: 0x7f0c003b
 			public const int design_bottom_navigation_shadow_color = 2131492923;
 			
-			// aapt resource value: 0x7f0c0067
-			public const int design_error = 2131492967;
+			// aapt resource value: 0x7f0c0068
+			public const int design_error = 2131492968;
 			
 			// aapt resource value: 0x7f0c003c
 			public const int design_fab_shadow_end_color = 2131492924;
@@ -5150,8 +5153,8 @@ namespace PassTheBarrier
 			// aapt resource value: 0x7f0c0045
 			public const int design_textinput_error_color_light = 2131492933;
 			
-			// aapt resource value: 0x7f0c0068
-			public const int design_tint_password_toggle = 2131492968;
+			// aapt resource value: 0x7f0c0069
+			public const int design_tint_password_toggle = 2131492969;
 			
 			// aapt resource value: 0x7f0c0013
 			public const int dim_foreground_disabled_material_dark = 2131492883;
@@ -5297,11 +5300,11 @@ namespace PassTheBarrier
 			// aapt resource value: 0x7f0c0038
 			public const int switch_thumb_disabled_material_light = 2131492920;
 			
-			// aapt resource value: 0x7f0c0069
-			public const int switch_thumb_material_dark = 2131492969;
-			
 			// aapt resource value: 0x7f0c006a
-			public const int switch_thumb_material_light = 2131492970;
+			public const int switch_thumb_material_dark = 2131492970;
+			
+			// aapt resource value: 0x7f0c006b
+			public const int switch_thumb_material_light = 2131492971;
 			
 			// aapt resource value: 0x7f0c0039
 			public const int switch_thumb_normal_material_dark = 2131492921;
@@ -6059,34 +6062,34 @@ namespace PassTheBarrier
 			public const int barrier_open_64dp = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int button_outline = 2130837594;
+			public const int design_bottom_navigation_item_background = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int design_bottom_navigation_item_background = 2130837595;
+			public const int design_fab_background = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int design_fab_background = 2130837596;
+			public const int design_ic_visibility = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int design_ic_visibility = 2130837597;
+			public const int design_ic_visibility_off = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int design_ic_visibility_off = 2130837598;
+			public const int design_password_eye = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int design_password_eye = 2130837599;
+			public const int design_snackbar_background = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int design_snackbar_background = 2130837600;
+			public const int fab_shadow = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int fab_shadow = 2130837601;
+			public const int fab_shadow_mini = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int fab_shadow_mini = 2130837602;
+			public const int ic_account_circle_black_24dp = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int ic_account_circle_black_24dp = 2130837603;
+			public const int ic_add_black_24dp = 2130837603;
 			
 			// aapt resource value: 0x7f020064
 			public const int ic_add_black_48dp = 2130837604;
@@ -6271,6 +6274,9 @@ namespace PassTheBarrier
 			
 			// aapt resource value: 0x7f080020
 			public const int add = 2131230752;
+			
+			// aapt resource value: 0x7f08007d
+			public const int addContactFloatingButton = 2131230845;
 			
 			// aapt resource value: 0x7f08005a
 			public const int alertTitle = 2131230810;
@@ -6493,9 +6499,6 @@ namespace PassTheBarrier
 			
 			// aapt resource value: 0x7f08005c
 			public const int expanded_menu = 2131230812;
-			
-			// aapt resource value: 0x7f08007d
-			public const int fab = 2131230845;
 			
 			// aapt resource value: 0x7f08003d
 			public const int fill = 2131230781;
@@ -7848,6 +7851,9 @@ namespace PassTheBarrier
 			
 			// aapt resource value: 0x7f0a0187
 			public const int PassTheBarrier_PrimaryText = 2131362183;
+			
+			// aapt resource value: 0x7f0a018a
+			public const int PassTheBarrier_RaisedButton = 2131362186;
 			
 			// aapt resource value: 0x7f0a0188
 			public const int PassTheBarrier_SecondaryText = 2131362184;

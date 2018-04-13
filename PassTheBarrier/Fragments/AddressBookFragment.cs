@@ -21,7 +21,7 @@ namespace PassTheBarrier.Fragments
 			ParentActivity.SupportActionBar.Title = GetString(Resource.String.address_book);
 
 			var listView = view.FindViewById<RecyclerView>(Resource.Id.contacts_recycler_view);
-			var fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab);
+			var fab = view.FindViewById<FloatingActionButton>(Resource.Id.addContactFloatingButton);
 			fab.AttachToRecyclerView(listView);
 			fab.Click += (sender, e) => { ViewModel.AddContactCommand.Execute(null); };
 

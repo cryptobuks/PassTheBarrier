@@ -10,4 +10,5 @@
   <color name="divider">#BDBDBD</color>
   <color name="windowBackground">#fff</color>
   <color name="error">#cc0000</color>
+  <color name="accent_alpha26">#4200BCD4</color>
 </resources>
