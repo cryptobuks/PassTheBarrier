@@ -1,5 +1,6 @@
 ﻿using PassTheBarier.Core.Data.Entities;
 using PassTheBarier.Core.Logic.Models;
+using PassTheBarier.Core.Logic.Utils;
 
 namespace PassTheBarier.Core.Logic.Mappers
 {
@@ -17,7 +18,7 @@ namespace PassTheBarier.Core.Logic.Mappers
 				Id = contact.Id,
 				Name = contact.Name,
 				Number = contact.Number,
-				Prefix = contact.Prefix
+				NumberPrefix = NumberPrefixProvider.GetById(contact.CountryPrefixId)
 			};
 		}
 
@@ -33,7 +34,7 @@ namespace PassTheBarier.Core.Logic.Mappers
 				Id = contact.Id,
 				Name = contact.Name,
 				Number = contact.Number,
-				Prefix = contact.Prefix
+				CountryPrefixId = contact.NumberPrefix.Id
 			};
 		}
 	}

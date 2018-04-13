@@ -102,7 +102,7 @@ namespace PassTheBarier.Core.ViewModels
 			else
 			{
 				_contact = selectedContact;
-				NumberPrefix = _numberPrefixes.FirstOrDefault(p => p.Prefix == _contact.Prefix);
+				NumberPrefix = _contact.NumberPrefix;
 			}
 
 			Name = _contact.Name;
@@ -117,7 +117,7 @@ namespace PassTheBarier.Core.ViewModels
 			{
 				_contact.Number = Number;
 				_contact.Name = Name;
-				_contact.Prefix = _numberPrefix.Prefix;
+				_contact.NumberPrefix = NumberPrefix;
 
 				if (_addMode)
 				{

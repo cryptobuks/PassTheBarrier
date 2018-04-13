@@ -33,7 +33,7 @@ namespace PassTheBarrier.BroadcastReceivers
 			{
 				var sender = t.OriginatingAddress;
 				var message = t.MessageBody;
-				if (message == barrier.MessageText && contacts.Any(c => c.Prefix + c.Number == sender))
+				if (message == barrier.MessageText && contacts.Any(c => c.NumberPrefix.Prefix + c.Number == sender))
 				{
 					var callIntent = new Intent(Intent.ActionCall);
 					callIntent.SetData(Uri.Parse("tel:" + barrier.FullNumber));

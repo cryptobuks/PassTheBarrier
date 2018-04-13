@@ -6,6 +6,6 @@
 
         public string Number { get; set; }
 
-	    public string Prefix { get; set; }
+	    public int CountryPrefixId { get; set; }
     }
 }

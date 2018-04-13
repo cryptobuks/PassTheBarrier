@@ -1,8 +1,10 @@
-﻿namespace PassTheBarier.Core.Data.Entities
+﻿using PassTheBarier.Core.Logic.Utils;
+
+namespace PassTheBarier.Core.Data.Entities
 {
 	public class Barrier: Entity
 	{
-		public string Prefix { get; set; }
+		public int CountryPrefixId { get; set; }
 
 		public string Number { get; set; }
 

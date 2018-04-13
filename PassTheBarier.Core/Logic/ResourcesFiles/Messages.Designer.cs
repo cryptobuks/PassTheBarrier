@@ -71,7 +71,7 @@ namespace PassTheBarier.Core.Logic.ResourcesFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A contact with than number already exists..
+        ///   Looks up a localized string similar to A contact with that number already exists..
         /// </summary>
         internal static string AContactWithThatNumberAlreadyExists {
             get {

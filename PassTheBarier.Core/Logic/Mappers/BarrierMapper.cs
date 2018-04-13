@@ -1,5 +1,6 @@
 ﻿using PassTheBarier.Core.Data.Entities;
 using PassTheBarier.Core.Logic.Models;
+using PassTheBarier.Core.Logic.Utils;
 
 namespace PassTheBarier.Core.Logic.Mappers
 {
@@ -15,7 +16,7 @@ namespace PassTheBarier.Core.Logic.Mappers
 			return new BarrierModel
 			{
 				Id = barrier.Id,
-				Prefix = barrier.Prefix,
+				NumberPrefix = NumberPrefixProvider.GetById(barrier.CountryPrefixId),
 				Number = barrier.Number,
 				MessageText = barrier.MessageText
 			};
@@ -31,7 +32,7 @@ namespace PassTheBarier.Core.Logic.Mappers
 			return new Barrier
 			{
 				Id = barrier.Id,
-				Prefix = barrier.Prefix,
+				CountryPrefixId = barrier.NumberPrefix.Id,
 				Number = barrier.Number,
 				MessageText = barrier.MessageText
 			};

@@ -25,18 +25,18 @@ namespace PassTheBarier.Core.Data.Repositories.Implementations
 		    return contacts.FirstOrDefault(s => s.Name == name);
 		}
 
-	    public Contact GetByPrefixAndNumber(string prefix, string number)
+	    public Contact GetByPrefixAndNumber(int numberPrefixId, string number)
 	    {
 		    var contacts = GetAll();
 
-		    return contacts.FirstOrDefault(s => s.Prefix == prefix && s.Number == number);
+		    return contacts.FirstOrDefault(s => s.CountryPrefixId == numberPrefixId && s.Number == number);
 		}
 
-	    public async Task<Contact> GetByPrefixAndNumberAsync(string prefix, string number)
+	    public async Task<Contact> GetByPrefixAndNumberAsync(int numberPrefixId, string number)
 	    {
 		    var contacts = await GetAllAsync();
 
-		    return contacts.FirstOrDefault(s => s.Prefix == prefix && s.Number == number);
+		    return contacts.FirstOrDefault(s => s.CountryPrefixId == numberPrefixId && s.Number == number);
 		}
     }
 }

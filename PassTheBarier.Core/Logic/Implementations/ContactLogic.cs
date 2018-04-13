@@ -44,7 +44,7 @@ namespace PassTheBarier.Core.Logic.Implementations
 			}
 
 			var contactWithPrefixAndNumber =
-				_contactRepository.GetByPrefixAndNumber(contactModel.Prefix, contactModel.Number);
+				_contactRepository.GetByPrefixAndNumber(contactModel.NumberPrefix.Id, contactModel.Number);
 			if (contactWithPrefixAndNumber != null)
 			{
 				throw new ValidationException(Messages.AContactWithThatNumberAlreadyExists);
@@ -65,7 +65,7 @@ namespace PassTheBarier.Core.Logic.Implementations
 			}
 
 			var contactWithPrefixAndNumber =
-				await _contactRepository.GetByPrefixAndNumberAsync(contactModel.Prefix, contactModel.Number);
+				await _contactRepository.GetByPrefixAndNumberAsync(contactModel.NumberPrefix.Id, contactModel.Number);
 			if (contactWithPrefixAndNumber != null)
 			{
 				throw new ValidationException(Messages.AContactWithThatNumberAlreadyExists);
@@ -92,7 +92,7 @@ namespace PassTheBarier.Core.Logic.Implementations
 			}
 
 			var contactWithPrefixAndNumber =
-				_contactRepository.GetByPrefixAndNumber(contactModel.Prefix, contactModel.Number);
+				_contactRepository.GetByPrefixAndNumber(contactModel.NumberPrefix.Id, contactModel.Number);
 			if (contactWithPrefixAndNumber != null && contact.Id != contactWithPrefixAndNumber.Id)
 			{
 				throw new ValidationException(Messages.AContactWithThatNumberAlreadyExists);
@@ -118,7 +118,7 @@ namespace PassTheBarier.Core.Logic.Implementations
 			}
 
 			var contactWithPrefixAndNumber =
-				await _contactRepository.GetByPrefixAndNumberAsync(contactModel.Prefix, contactModel.Number);
+				await _contactRepository.GetByPrefixAndNumberAsync(contactModel.NumberPrefix.Id, contactModel.Number);
 			if (contactWithPrefixAndNumber != null && contact.Id != contactWithPrefixAndNumber.Id)
 			{
 				throw new ValidationException(Messages.AContactWithThatNumberAlreadyExists);

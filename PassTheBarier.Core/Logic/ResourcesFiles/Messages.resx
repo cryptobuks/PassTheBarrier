@@ -121,7 +121,7 @@
     <value>A contact with that name already exists.</value>
   </data>
   <data name="AContactWithThatNumberAlreadyExists" xml:space="preserve">
-    <value>A contact with than number already exists.</value>
+    <value>A contact with that number already exists.</value>
   </data>
   <data name="BarrierSavedSuccessfully" xml:space="preserve">
     <value>Barrier saved successfully</value>

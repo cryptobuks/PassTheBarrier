@@ -111,7 +111,7 @@ namespace PassTheBarier.Core.ViewModels
 			}
 			else
 			{
-				NumberPrefix = NumberPrefixes.FirstOrDefault(n => n.Prefix == barrier.Prefix);
+				NumberPrefix = barrier.NumberPrefix;
 			}
 
 			_barrier = barrier;
@@ -126,7 +126,7 @@ namespace PassTheBarier.Core.ViewModels
 			{
 				_barrier.Number = Number;
 				_barrier.MessageText = MessageText;
-				_barrier.Prefix = NumberPrefix.Prefix;
+				_barrier.NumberPrefix = NumberPrefix;
 				await _barrierLogic.SaveBarrierAsync(_barrier);
 				var message = new BarrierMessage(
 					this,

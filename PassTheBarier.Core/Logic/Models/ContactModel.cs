@@ -6,12 +6,12 @@
 
         public string Name { get; set; }
 
-	    public string Prefix { get; set; }
+	    public NumberPrefixModel NumberPrefix { get; set; }
 
 		public string Number { get; set; }
 
-	    public string FullNumber => Prefix + Number;
+	    public string FullNumber => NumberPrefix.Prefix + Number;
 
-	    public string FormattedPrefix => $"({Prefix}) ";
+	    public string FormattedPrefix => $"({NumberPrefix.Prefix}) ";
     }
 }

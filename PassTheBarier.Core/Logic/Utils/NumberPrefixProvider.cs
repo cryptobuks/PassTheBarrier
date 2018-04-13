@@ -6,7 +6,7 @@ namespace PassTheBarier.Core.Logic.Utils
 {
 	public static class NumberPrefixProvider
 	{
-		private static IList<NumberPrefixModel> _prefixes = new List<NumberPrefixModel>
+		private static readonly IList<NumberPrefixModel> Prefixes = new List<NumberPrefixModel>
 		{
 			new NumberPrefixModel
 			{
@@ -208,7 +208,12 @@ namespace PassTheBarier.Core.Logic.Utils
 
 		public static IList<NumberPrefixModel> GetNumberPrefixes()
 		{
-			return _prefixes.OrderBy(p => p.CountryName).ToList();
+			return Prefixes.OrderBy(p => p.CountryName).ToList();
+		}
+
+		public static NumberPrefixModel GetById(int id)
+		{
+			return Prefixes.FirstOrDefault(p => p.Id == id);
 		}
 	}
 }
