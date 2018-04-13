@@ -17,7 +17,7 @@ namespace PassTheBarier.Core.ViewModels
 
 	    public AboutViewModel(IAppInfo appInfo)
 	    {
-		    ApplicationVersion = appInfo.Version;
+		    ApplicationVersion = appInfo.VersionName;
 	    }
     }
 }
