@@ -7911,11 +7911,11 @@ namespace PassTheBarrier
 			// aapt resource value: 0x7f090032
 			public const int about = 2131296306;
 			
-			// aapt resource value: 0x7f09003e
-			public const int aboutDescription = 2131296318;
+			// aapt resource value: 0x7f090041
+			public const int aboutDescription = 2131296321;
 			
-			// aapt resource value: 0x7f09003d
-			public const int aboutTitle = 2131296317;
+			// aapt resource value: 0x7f090040
+			public const int aboutTitle = 2131296320;
 			
 			// aapt resource value: 0x7f09002f
 			public const int address_book = 2131296303;
@@ -7929,11 +7929,11 @@ namespace PassTheBarrier
 			// aapt resource value: 0x7f090030
 			public const int barrier = 2131296304;
 			
-			// aapt resource value: 0x7f090037
-			public const int barrierMessageText = 2131296311;
+			// aapt resource value: 0x7f09003a
+			public const int barrierMessageText = 2131296314;
 			
-			// aapt resource value: 0x7f090038
-			public const int barrierNumberText = 2131296312;
+			// aapt resource value: 0x7f09003b
+			public const int barrierNumberText = 2131296315;
 			
 			// aapt resource value: 0x7f090022
 			public const int bottom_sheet_behavior = 2131296290;
@@ -7944,14 +7944,14 @@ namespace PassTheBarrier
 			// aapt resource value: 0x7f090031
 			public const int contact = 2131296305;
 			
-			// aapt resource value: 0x7f090039
-			public const int contactNameText = 2131296313;
+			// aapt resource value: 0x7f09003c
+			public const int contactNameText = 2131296316;
 			
-			// aapt resource value: 0x7f09003a
-			public const int contactNumberText = 2131296314;
+			// aapt resource value: 0x7f09003d
+			public const int contactNumberText = 2131296317;
 			
-			// aapt resource value: 0x7f09003b
-			public const int contactPrefixText = 2131296315;
+			// aapt resource value: 0x7f09003e
+			public const int contactPrefixText = 2131296318;
 			
 			// aapt resource value: 0x7f09002e
 			public const int drawer_close = 2131296302;
@@ -7980,17 +7980,26 @@ namespace PassTheBarrier
 			// aapt resource value: 0x7f090028
 			public const int path_password_strike_through = 2131296296;
 			
-			// aapt resource value: 0x7f090036
-			public const int save = 2131296310;
+			// aapt resource value: 0x7f090039
+			public const int save = 2131296313;
 			
 			// aapt resource value: 0x7f090013
 			public const int search_menu_title = 2131296275;
 			
-			// aapt resource value: 0x7f090035
-			public const int serviceRunningNotificationText = 2131296309;
-			
 			// aapt resource value: 0x7f090034
-			public const int serviceRunningNotificationTitle = 2131296308;
+			public const int serviceRequiresConfigurationText = 2131296308;
+			
+			// aapt resource value: 0x7f090038
+			public const int serviceRunningNotificationText = 2131296312;
+			
+			// aapt resource value: 0x7f090037
+			public const int serviceRunningNotificationTitle = 2131296311;
+			
+			// aapt resource value: 0x7f090035
+			public const int serviceRunningText = 2131296309;
+			
+			// aapt resource value: 0x7f090036
+			public const int serviceStoppedText = 2131296310;
 			
 			// aapt resource value: 0x7f090033
 			public const int startIntentExtra = 2131296307;
@@ -7998,8 +8007,8 @@ namespace PassTheBarrier
 			// aapt resource value: 0x7f090014
 			public const int status_bar_notification_info_overflow = 2131296276;
 			
-			// aapt resource value: 0x7f09003c
-			public const int versionLabel = 2131296316;
+			// aapt resource value: 0x7f09003f
+			public const int versionLabel = 2131296319;
 			
 			// aapt resource value: 0x7f09002b
 			public const int view_scroll_translation_autohide_behavior = 2131296299;
