@@ -26,12 +26,10 @@
   </MvxSwipeRefreshLayout>
   <Refractored.Fab.FloatingActionButton
     android:id="@+id/addContactFloatingButton"
-    android:layout_width="40dp"
-    android:layout_height="40dp"
     android:layout_gravity="bottom|right"
-    android:layout_margin="20dp"
     android:src="@drawable/ic_add_black_24dp"
     local:fab_colorNormal="@color/accent"
     local:fab_colorPressed="@color/primary_light"
-    local:fab_colorRipple="@color/accent_alpha26"/>
+    local:fab_colorRipple="@color/accent_alpha26"
+    style="@style/PassTheBarrier.FloatingActionButton"/>
 </android.support.design.widget.CoordinatorLayout>

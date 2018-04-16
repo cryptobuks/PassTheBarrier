@@ -86,7 +86,7 @@
   <style name="PassTheBarrier.CountryFlagImage" parent="">
     <item name="android:layout_height">23dp</item>
     <item name="android:layout_width">23dp</item>
-    <item name="android:paddingBottom">4dp</item>
+<!--    <item name="android:paddingBottom">4dp</item>-->
     <item name="android:paddingLeft">3dp</item>
     <item name="android:paddingRight">7dp</item>
   </style>
@@ -116,10 +116,16 @@
   <style name="PassTheBarrier.RaisedButton" parent="PassTheBarrier.Button">
     <item name="android:textSize">14sp</item>
     <item name="android:fontFamily">Roboto Medium</item>
-    <item name="android:layout_height">36dp</item>
+    <item name="android:layout_height">48dp</item>
     <item name="android:paddingLeft">16dp</item>
     <item name="android:paddingRight">16dp</item>
     <item name="android:minWidth">88dp</item>
+  </style>
+
+  <style name="PassTheBarrier.FloatingActionButton" parent="">
+    <item name="android:layout_width">56dp</item>
+    <item name="android:layout_height">56dp</item>
+    <item name="android:layout_margin">20dp</item>
   </style>
 
 </resources>

@@ -8524,6 +8524,9 @@ namespace PassTheBarrier
 			// aapt resource value: 0x7f0a0180
 			public const int PassTheBarrier_EditTextLabel = 2131362176;
 			
+			// aapt resource value: 0x7f0a018c
+			public const int PassTheBarrier_FloatingActionButton = 2131362188;
+			
 			// aapt resource value: 0x7f0a017b
 			public const int PassTheBarrier_Main = 2131362171;
 			
