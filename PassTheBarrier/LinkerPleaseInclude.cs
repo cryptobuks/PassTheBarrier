@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Windows.Input;
 using Android.App;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform.IoC;
 
 namespace PassTheBarrier
 {
@@ -90,15 +87,13 @@ namespace PassTheBarrier
 			command.CanExecuteChanged += (s, e) => { if (command.CanExecute(null)) command.Execute(null); };
 		}
 
-		public void Include(MvxPropertyInjector injector)
+		public void Include(MvvmCross.Platform.IoC.MvxPropertyInjector injector)
 		{
-			injector = new MvxPropertyInjector();
+			injector = new MvvmCross.Platform.IoC.MvxPropertyInjector();
 		}
-
-		public void Include(INotifyPropertyChanged changed)
+		public void Include(System.ComponentModel.INotifyPropertyChanged changed)
 		{
-			changed.PropertyChanged += (sender, e) =>
-			{
+			changed.PropertyChanged += (sender, e) => {
 				var test = e.PropertyName;
 			};
 		}
@@ -109,6 +104,34 @@ namespace PassTheBarrier
 			var context2 = new MvxTaskBasedBindingContext();
 			context2.Dispose();
 		}
+
+//		private readonly List<IMvxPluginLoader> _loaders = new List<IMvxPluginLoader>
+//		{
+//			MvvmCross.Plugins.Visibility.PluginLoader.Instance,
+//		};
+//
+//		private readonly List<IMvxPlugin> _plugins = new List<IMvxPlugin>
+//		{
+//			new MvvmCross.Plugins.Visibility.Droid.Plugin(),
+//		};
+//
+//		public void Include(IMvxPluginLoader loader)
+//		{
+//			foreach (var l in _loaders)
+//			{
+//				loader = l;
+//				loader.EnsureLoaded();
+//			}
+//		}
+//
+//		public void Include(IMvxPlugin plugin)
+//		{
+//			foreach (var l in _plugins)
+//			{
+//				plugin = l;
+//				plugin.Load();
+//			}
+//		}
 
 		public void Include(MvxNavigationService service, IMvxViewModelLoader loader)
 		{
