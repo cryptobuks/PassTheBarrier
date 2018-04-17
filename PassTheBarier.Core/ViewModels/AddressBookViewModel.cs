@@ -2,10 +2,8 @@
 using System.Threading.Tasks;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Plugins.Messenger;
 using PassTheBarier.Core.Logic.Interfaces;
 using PassTheBarier.Core.Logic.Models;
-using PassTheBarier.Core.Messenger;
 using PassTheBarier.Core.Navigation;
 
 namespace PassTheBarier.Core.ViewModels
@@ -14,7 +12,6 @@ namespace PassTheBarier.Core.ViewModels
     {
         private readonly IContactLogic _contactLogic;
         private readonly IMvxNavigationService _navigationService;
-	    private readonly IMvxMessenger _messenger;
 
 		//Commands
 		public IMvxCommand<ContactModel> ContactSelectedCommand { get; }
@@ -39,11 +36,10 @@ namespace PassTheBarier.Core.ViewModels
             }
         }
 
-        public AddressBookViewModel(IContactLogic contactLogic, IMvxNavigationService navigationService, IMvxMessenger messenger)
+        public AddressBookViewModel(IContactLogic contactLogic, IMvxNavigationService navigationService)
         {
             _contactLogic = contactLogic;
             _navigationService = navigationService;
-	        _messenger = messenger;
 
 	        Contacts = new MvxObservableCollection<ContactModel>();
 
@@ -98,7 +94,6 @@ namespace PassTheBarier.Core.ViewModels
 					//delete
 			        Contacts.Remove(contact);
 		        }
-		        _messenger.Publish(new ContactsMessage(this, Contacts));
 			}
 		}
 
@@ -109,7 +104,6 @@ namespace PassTheBarier.Core.ViewModels
 		    if (result?.Response != null)
 		    {
 				Contacts.Add(result.Response);
-			    _messenger.Publish(new ContactsMessage(this, Contacts));
 			}
 	    }
     }

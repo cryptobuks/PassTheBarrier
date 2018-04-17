@@ -1,6 +1,4 @@
-﻿using PassTheBarier.Core.Logic.Utils;
-
-namespace PassTheBarier.Core.Data.Entities
+﻿namespace PassTheBarier.Core.Data.Entities
 {
 	public class Barrier: Entity
 	{

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using PassTheBarier.Core.Logic.Interfaces;
@@ -12,10 +11,8 @@ namespace PassTheBarier.Core.ViewModels
 	public class HomeViewModel : BaseViewModel
 	{
 		private readonly IBarrierLogic _barrierLogic;
-		private readonly IContactLogic _contactLogic;
 		private readonly IActionHelper _actionHelper;
 		private readonly MvxSubscriptionToken _barrierSubscriptionToken;
-		private readonly MvxSubscriptionToken _contactsSubscriptionToken;
 
 		private BarrierModel _barrier;
 		public BarrierModel Barrier
@@ -28,17 +25,13 @@ namespace PassTheBarier.Core.ViewModels
 			}
 		}
 
-		public IEnumerable<ContactModel> Contacts { get; set; }
-
-		public HomeViewModel(IContactLogic contactLogic, IBarrierLogic barrierLogic, IActionHelper actionHelper, IMvxMessenger messenger)
+		public HomeViewModel(IBarrierLogic barrierLogic, IActionHelper actionHelper, IMvxMessenger messenger)
 		{
-			_contactLogic = contactLogic;
 			_barrierLogic = barrierLogic;
 			_actionHelper = actionHelper;
 
 			LoadDataCommand = new MvxAsyncCommand(() => _actionHelper.DoAction(LoadData));
 			_barrierSubscriptionToken = messenger.Subscribe<BarrierMessage>(OnBarrierMessageReceived);
-			_contactsSubscriptionToken = messenger.Subscribe<ContactsMessage>(OnContactsMessageReceived);
 		}
 
 		public IMvxAsyncCommand LoadDataCommand { get; set; }
@@ -67,15 +60,9 @@ namespace PassTheBarier.Core.ViewModels
 			Barrier = barrierMessage.Barrier;
 		}
 
-		private void OnContactsMessageReceived(ContactsMessage contactsMessage)
-		{
-			Contacts = contactsMessage.Contacts;
-		}
-
 		private async Task LoadData()
 		{
 			Barrier = await _barrierLogic.GetBarrierAsync();
-			Contacts = await _contactLogic.GetAllAsync();
 		}
 	}
 }
