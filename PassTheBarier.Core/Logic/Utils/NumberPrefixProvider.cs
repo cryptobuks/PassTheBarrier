@@ -11,6 +11,13 @@ namespace PassTheBarier.Core.Logic.Utils
 			new NumberPrefixModel
 			{
 				Id = (int) CountryEnum.Au,
+				CountryCode = "AU",
+				CountryName = "Australia",
+				Prefix = "+61"
+			},
+			new NumberPrefixModel
+			{
+				Id = (int) CountryEnum.At,
 				CountryCode = "AT",
 				CountryName = "Austria",
 				Prefix = "+43"
@@ -52,6 +59,20 @@ namespace PassTheBarier.Core.Logic.Utils
 			},
 			new NumberPrefixModel
 			{
+				Id = (int) CountryEnum.Cy,
+				CountryName = "Cyprus",
+				CountryCode = "CY",
+				Prefix = "+357"
+			},
+			new NumberPrefixModel
+			{
+				Id = (int) CountryEnum.Cz,
+				CountryName = "Czech Republic",
+				CountryCode = "CZ",
+				Prefix = "+420"
+			},
+			new NumberPrefixModel
+			{
 				Id = (int) CountryEnum.Dk,
 				CountryName = "Denmark",
 				CountryCode = "DK",
@@ -63,6 +84,20 @@ namespace PassTheBarier.Core.Logic.Utils
 				CountryName = "Germany",
 				CountryCode = "DE",
 				Prefix = "+49"
+			},
+			new NumberPrefixModel
+			{
+				Id = (int) CountryEnum.Ee,
+				CountryName = "Estonia",
+				CountryCode = "EE",
+				Prefix = "+372"
+			},
+			new NumberPrefixModel
+			{
+				Id = (int) CountryEnum.Fi,
+				CountryName = "Finland",
+				CountryCode = "FI",
+				Prefix = "+358"
 			},
 			new NumberPrefixModel
 			{
@@ -87,6 +122,13 @@ namespace PassTheBarier.Core.Logic.Utils
 			},
 			new NumberPrefixModel
 			{
+				Id = (int) CountryEnum.Is,
+				CountryName = "Iceland",
+				CountryCode = "IS",
+				Prefix = "+354"
+			},
+			new NumberPrefixModel
+			{
 				Id = (int) CountryEnum.Ie,
 				CountryName = "Ireland",
 				CountryCode = "IE",
@@ -94,10 +136,66 @@ namespace PassTheBarier.Core.Logic.Utils
 			},
 			new NumberPrefixModel
 			{
+				Id = (int) CountryEnum.Il,
+				CountryName = "Israel",
+				CountryCode = "IL",
+				Prefix = "+972"
+			},
+			new NumberPrefixModel
+			{
 				Id = (int) CountryEnum.It,
 				CountryName = "Italy",
 				CountryCode = "IT",
 				Prefix = "+39"
+			},
+			new NumberPrefixModel
+			{
+				Id = (int) CountryEnum.Jp,
+				CountryName = "Japan",
+				CountryCode = "JP",
+				Prefix = "+81"
+			},
+			new NumberPrefixModel
+			{
+				Id = (int) CountryEnum.Lv,
+				CountryName = "Latvia",
+				CountryCode = "LV",
+				Prefix = "+371"
+			},
+			new NumberPrefixModel
+			{
+				Id = (int) CountryEnum.Lt,
+				CountryName = "Lithuania",
+				CountryCode = "LT",
+				Prefix = "+370"
+			},
+			new NumberPrefixModel
+			{
+				Id = (int) CountryEnum.Lu,
+				CountryName = "Luxembourg",
+				CountryCode = "LU",
+				Prefix = "+352"
+			},
+			new NumberPrefixModel
+			{
+				Id = (int) CountryEnum.Mk,
+				CountryName = "Macedonia",
+				CountryCode = "MK",
+				Prefix = "+389"
+			},
+			new NumberPrefixModel
+			{
+				Id = (int) CountryEnum.Mt,
+				CountryName = "Malta",
+				CountryCode = "MT",
+				Prefix = "+356"
+			},
+			new NumberPrefixModel
+			{
+				Id = (int) CountryEnum.Md,
+				CountryName = "Moldova",
+				CountryCode = "MD",
+				Prefix = "+373"
 			},
 			new NumberPrefixModel
 			{
@@ -140,6 +238,13 @@ namespace PassTheBarier.Core.Logic.Utils
 				CountryName = "Russia",
 				CountryCode = "RU",
 				Prefix = "+7"
+			},
+			new NumberPrefixModel
+			{
+				Id = (int) CountryEnum.Rs,
+				CountryName = "Serbia",
+				CountryCode = "RS",
+				Prefix = "+381"
 			},
 			new NumberPrefixModel
 			{

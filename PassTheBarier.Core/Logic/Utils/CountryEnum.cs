@@ -2,7 +2,7 @@
 {
 	public enum CountryEnum
 	{
-		Au,
+		At,
 		Be,
 		Bg,
 		Ca,
@@ -29,6 +29,21 @@
 		Tr,
 		Ua,
 		Gb,
-		Us
+		Us,
+		Cy,
+		Au,
+		Cz,
+		Ee,
+		Fi,
+		Is,
+		Il,
+		Jp,
+		Lv,
+		Lt,
+		Lu,
+		Mt,
+		Mk,
+		Md,
+		Rs
 	}
 }
