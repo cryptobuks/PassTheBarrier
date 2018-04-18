@@ -51,24 +51,30 @@
     <Compile Include="Data\Entities\Contact.cs" />
     <Compile Include="Data\Entities\Entity.cs" />
     <Compile Include="Data\Entities\Barrier.cs" />
+    <Compile Include="Data\Entities\Setting.cs" />
     <Compile Include="Data\ISqliteConnectionFactory.cs" />
     <Compile Include="Data\Repositories\Implementations\BaseRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\ContactRepository.cs" />
+    <Compile Include="Data\Repositories\Implementations\SettingRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\IBaseRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\IContactRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\BarrierRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\IBarrierRepository.cs" />
+    <Compile Include="Data\Repositories\Interfaces\ISettingRepository.cs" />
     <Compile Include="Logic\Exceptions\NotFoundException.cs" />
     <Compile Include="Logic\Exceptions\ValidationException.cs" />
     <Compile Include="Logic\Implementations\BarrierLogic.cs" />
     <Compile Include="Logic\Implementations\ContactLogic.cs" />
+    <Compile Include="Logic\Implementations\SettingLogic.cs" />
     <Compile Include="Logic\Interfaces\IBarrierLogic.cs" />
     <Compile Include="Logic\Interfaces\IContactLogic.cs" />
+    <Compile Include="Logic\Interfaces\ISettingLogic.cs" />
     <Compile Include="Logic\Mappers\BarrierMapper.cs" />
     <Compile Include="Logic\Mappers\ContactMapper.cs" />
     <Compile Include="Logic\Models\BarrierModel.cs" />
     <Compile Include="Logic\Models\ContactModel.cs" />
     <Compile Include="Logic\Models\NumberPrefixModel.cs" />
+    <Compile Include="Logic\Models\SettingsModel.cs" />
     <Compile Include="Logic\ResourcesFiles\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -95,6 +101,7 @@
     <Compile Include="ViewModels\InputViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

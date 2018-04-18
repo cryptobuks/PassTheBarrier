@@ -59,7 +59,6 @@ namespace PassTheBarrier.Activities
 					var navigationMenu = menuFragment.View.FindViewById<NavigationView>(Resource.Id.navigation_view);
 
 					menuFragment.MarkSelectedMenuItem(navigationMenu.Menu.FindItem(Resource.Id.nav_home));
-
 				}
 
 	            base.OnBackPressed();

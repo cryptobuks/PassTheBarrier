@@ -147,4 +147,7 @@
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="SettingsSavedSuccessfully" xml:space="preserve">
+    <value>Settings saved successfully</value>
+  </data>
 </root>

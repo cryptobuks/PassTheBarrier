@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
@@ -75,7 +74,10 @@ namespace PassTheBarrier.Fragments
                 case Resource.Id.nav_addressBook:
                     ViewModel.ShowAddressBookCommand.Execute(null);
                     break;
-                case Resource.Id.nav_about:
+	            case Resource.Id.nav_settings:
+		            ViewModel.ShowSettingsCommand.Execute(null);
+		            break;
+				case Resource.Id.nav_about:
                     ViewModel.ShowAboutCommand.Execute(null);
                     break;
             }

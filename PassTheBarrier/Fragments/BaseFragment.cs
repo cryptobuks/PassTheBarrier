@@ -1,4 +1,3 @@
-using Android.App;
 using Android.Content.Res;
 using Android.OS;
 using Android.Support.V7.Widget;

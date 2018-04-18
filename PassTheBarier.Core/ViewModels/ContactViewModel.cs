@@ -17,14 +17,16 @@ namespace PassTheBarier.Core.ViewModels
 	{
 		private readonly IActionHelper _actionHelper;
 		private readonly IContactLogic _contactLogic;
+		private readonly ISettingLogic _settingLogic;
 		private readonly IMvxNavigationService _navigationService;
 
 		public IMvxCommand SaveContactCommand { get; }
 
-		public ContactViewModel(IActionHelper actionHelper, IContactLogic contactLogic, IMvxNavigationService navigationService)
+		public ContactViewModel(IActionHelper actionHelper, IContactLogic contactLogic, ISettingLogic settingLogic, IMvxNavigationService navigationService)
 		{
 			_contactLogic = contactLogic;
 			_navigationService = navigationService;
+			_settingLogic = settingLogic;
 			_actionHelper = actionHelper;
 
 			SaveContactCommand = new MvxAsyncCommand(() => _actionHelper. DoAction(SaveContact));
@@ -97,7 +99,6 @@ namespace PassTheBarier.Core.ViewModels
 			{
 				_addMode = true;
 				_contact = new ContactModel();
-				NumberPrefix = NumberPrefixes.FirstOrDefault();
 			}
 			else
 			{
@@ -107,6 +108,17 @@ namespace PassTheBarier.Core.ViewModels
 
 			Name = _contact.Name;
 			Number = _contact.Number;
+		}
+
+		public override async Task Initialize()
+		{
+			if (_addMode)
+			{
+				var settings = await _settingLogic.GetSettingsAsync();
+				NumberPrefix = settings.NumberPrefix;
+			}
+
+			await base.Initialize();
 		}
 
 		private async Task SaveContact()
@@ -139,9 +151,11 @@ namespace PassTheBarier.Core.ViewModels
 			var validator = new ValidationHelper();
 			var regex = new Regex(Constants.NumberRegex);
 
-			validator.AddRequiredRule(() => Name, Messages.FieldRequired);
+			validator.AddRule(() => Name,
+				() => RuleResult.Assert(!string.IsNullOrWhiteSpace(Name), Messages.FieldRequired));
 
-			validator.AddRequiredRule(() => Number, Messages.FieldRequired);
+			validator.AddRule(() => Number,
+				() => RuleResult.Assert(!string.IsNullOrWhiteSpace(Number), Messages.FieldRequired));
 			validator.AddRule(() => Number,
 				() => RuleResult.Assert(regex.IsMatch(Number), Messages.InvalidNumber));
 

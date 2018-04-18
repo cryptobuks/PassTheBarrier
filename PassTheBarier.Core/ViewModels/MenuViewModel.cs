@@ -24,6 +24,10 @@ namespace PassTheBarier.Core.ViewModels
             {
 	            await _navigationService.Navigate<AddressBookViewModel>(new CleartStackPresentationBundle());
             });
+			ShowSettingsCommand = new MvxAsyncCommand(async () =>
+				{
+					await _navigationService.Navigate<SettingsViewModel>(new CleartStackPresentationBundle());
+				});
             ShowAboutCommand = new MvxAsyncCommand(async () =>
             {
 	            await _navigationService.Navigate<AboutViewModel>(new CleartStackPresentationBundle());
@@ -31,9 +35,10 @@ namespace PassTheBarier.Core.ViewModels
         }
 
         // MVVM Commands
-        public IMvxCommand ShowHomeCommand { get; private set; }
-        public IMvxCommand ShowBarrierCommand { get; private set; }
-        public IMvxCommand ShowAddressBookCommand { get; private set; }
-        public IMvxCommand ShowAboutCommand { get; private set; }
+        public IMvxCommand ShowHomeCommand { get; }
+        public IMvxCommand ShowBarrierCommand { get; }
+        public IMvxCommand ShowAddressBookCommand { get; }
+		public IMvxCommand ShowSettingsCommand { get; }
+        public IMvxCommand ShowAboutCommand { get; }
     }
 }

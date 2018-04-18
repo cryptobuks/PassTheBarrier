@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:local="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
+  <include
+    layout="@layout/toolbar_actionbar" />
+
+  <RelativeLayout
+    android:id="@+id/settingsMainView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/PassTheBarrier.PageLayout">
+
+    <LinearLayout
+      android:id="@+id/settingsLinearLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true">
+
+      <TextView
+        android:id="@+id/settingsDefaultNumberPrefixTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.EditTextLabel"
+        android:text="@string/defaultNumberPrefixText" />
+
+      <MvxSpinner
+        android:id="@+id/settingsDefaultNumberPrefixSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/PassTheBarrier.Spinner"
+        local:MvxItemTemplate="@layout/spinner_prefix_item"
+        local:MvxDropDownItemTemplate="@layout/spinner_prefix_dropdown"
+        local:MvxBind="ItemsSource NumberPrefixes; SelectedItem NumberPrefix;" />
+
+      <Button
+        android:id="@+id/settingsSaveBtn"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        style="@style/PassTheBarrier.RaisedButton"
+        android:text="@string/save"
+        local:MvxBind="Click SaveSettingsCommand" />
+
+    </LinearLayout>
+
+  </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

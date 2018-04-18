@@ -150,5 +150,14 @@ namespace PassTheBarier.Core.Logic.ResourcesFiles {
                 return ResourceManager.GetString("Ok", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings saved successfully.
+        /// </summary>
+        internal static string SettingsSavedSuccessfully {
+            get {
+                return ResourceManager.GetString("SettingsSavedSuccessfully", resourceCulture);
+            }
+        }
     }
 }

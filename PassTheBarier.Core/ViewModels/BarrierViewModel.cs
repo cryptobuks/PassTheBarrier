@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MvvmCross.Core.Navigation;
@@ -18,21 +17,23 @@ namespace PassTheBarier.Core.ViewModels
     {
 	    private readonly IActionHelper _actionHelper;
 	    private readonly IBarrierLogic _barrierLogic;
+	    private readonly ISettingLogic _settingLogic;
 	    private readonly IMvxNavigationService _navigationService;
 	    private readonly IMvxMessenger _messenger;
 
 		public IMvxCommand LoadBarrierCommand { get; }
 		public IMvxCommand SaveBarrierCommand { get; }
 
-		public BarrierViewModel(IBarrierLogic barrierLogic, IActionHelper actionHelper, IMvxNavigationService navigationService, IMvxMessenger messenger)
+		public BarrierViewModel(IBarrierLogic barrierLogic, ISettingLogic settingLogic, IActionHelper actionHelper, IMvxNavigationService navigationService, IMvxMessenger messenger)
 		{
 			_barrierLogic = barrierLogic;
+			_settingLogic = settingLogic;
 			_actionHelper = actionHelper;
 			_navigationService = navigationService;
 			_messenger = messenger;
 
 			SaveBarrierCommand = new MvxAsyncCommand(() => _actionHelper.DoAction(SaveBarrier));
-			LoadBarrierCommand = new MvxAsyncCommand(() => actionHelper.DoAction(LoadBarrier));
+			LoadBarrierCommand = new MvxAsyncCommand(() => _actionHelper.DoAction(LoadBarrier));
 			NumberPrefixes = NumberPrefixProvider.GetNumberPrefixes();
 		}
 
@@ -107,7 +108,8 @@ namespace PassTheBarier.Core.ViewModels
 			if (barrier == null)
 			{
 				barrier = new BarrierModel();
-				NumberPrefix = NumberPrefixes.FirstOrDefault();
+				var settings = await _settingLogic.GetSettingsAsync();
+				NumberPrefix = settings.NumberPrefix;
 			}
 			else
 			{
@@ -144,11 +146,13 @@ namespace PassTheBarier.Core.ViewModels
 		    var validator = new ValidationHelper();
 		    var regex = new Regex(Constants.NumberRegex);
 
-		    validator.AddRequiredRule(() => Number, Messages.FieldRequired);
 		    validator.AddRule(() => Number,
+			    () => RuleResult.Assert(!string.IsNullOrWhiteSpace(Number), Messages.FieldRequired));
+			validator.AddRule(() => Number,
 			    () => RuleResult.Assert(regex.IsMatch(Number), Messages.InvalidNumber));
 
-		    validator.AddRequiredRule(() => MessageText, Messages.FieldRequired);
+		    validator.AddRule(() => MessageText, 
+			    () => RuleResult.Assert(!string.IsNullOrWhiteSpace(MessageText), Messages.FieldRequired));
 
 		    var result = validator.ValidateAll();
 		    Errors = result.AsObservableDictionary();

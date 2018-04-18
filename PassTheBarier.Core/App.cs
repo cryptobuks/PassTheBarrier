@@ -29,12 +29,14 @@ namespace PassTheBarier.Core
 	        Mvx.RegisterType<IActionHelper, ActionHelper>();
             Mvx.RegisterType<IContactLogic, ContactLogic>();
 			Mvx.RegisterType<IBarrierLogic, BarrierLogic>();
+			Mvx.RegisterType<ISettingLogic, SettingLogic>();
 		}
 
 		private void InitializeData()
         {
             Mvx.RegisterType<IContactRepository, ContactRepository>();
 			Mvx.RegisterType<IBarrierRepository, BarrierRepository>();
+			Mvx.RegisterType<ISettingRepository, SettingRepository>();
 		}
 
 		private void InitializeStartNavigation()

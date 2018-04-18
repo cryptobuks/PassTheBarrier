@@ -4,7 +4,6 @@ using MvvmCross.Droid.Views;
 using PassTheBarier.Core;
 using System.Collections.Generic;
 using System.Reflection;
-using Android.App;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
