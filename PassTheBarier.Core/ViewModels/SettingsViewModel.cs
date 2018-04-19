@@ -2,10 +2,12 @@
 using System.Threading.Tasks;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 using PassTheBarier.Core.Logic.Interfaces;
 using PassTheBarier.Core.Logic.Models;
 using PassTheBarier.Core.Logic.ResourcesFiles;
 using PassTheBarier.Core.Logic.Utils;
+using PassTheBarier.Core.Messenger;
 
 namespace PassTheBarier.Core.ViewModels
 {
@@ -13,16 +15,19 @@ namespace PassTheBarier.Core.ViewModels
 	{
 		private readonly IActionHelper _actionHelper;
 		private readonly IMvxNavigationService _navigationService;
+		private readonly IMvxMessenger _messenger;
 		private readonly ISettingLogic _settingLogic;
 
 		public IMvxCommand LoadSettingsCommand { get; }
 		public IMvxCommand SaveSettingsCommand { get; }
 
-		public SettingsViewModel(ISettingLogic settingLogic, IActionHelper actionHelper, IMvxNavigationService navigationService)
+		public SettingsViewModel(ISettingLogic settingLogic, IActionHelper actionHelper, IMvxNavigationService navigationService,
+			IMvxMessenger messenger)
 		{
 			_settingLogic = settingLogic;
 			_actionHelper = actionHelper;
 			_navigationService = navigationService;
+			_messenger = messenger;
 
 			LoadSettingsCommand = new MvxAsyncCommand(() => _actionHelper.DoAction(LoadSettings));
 			SaveSettingsCommand = new MvxAsyncCommand(() => _actionHelper.DoAction(SaveSettings));
@@ -74,7 +79,14 @@ namespace PassTheBarier.Core.ViewModels
 			await _settingLogic.SaveSettingsAsync(_settings);
 
 			_actionHelper.DisplayToast(Messages.SettingsSavedSuccessfully);
+			GoBack();
+		}
+
+		//TODO: should be refactored
+		private async void GoBack()
+		{
 			await _navigationService.Close(this);
+			_messenger.Publish(new NavigationMessage(this));
 		}
 	}
 }

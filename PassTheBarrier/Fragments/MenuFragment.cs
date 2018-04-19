@@ -1,12 +1,15 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Views;
 using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Views.Attributes;
+using PassTheBarier.Core.Messenger;
 using PassTheBarier.Core.ViewModels;
 using PassTheBarrier.Activities;
 
@@ -34,10 +37,11 @@ namespace PassTheBarrier.Fragments
 
 	        _previousMenuItem = homeMenuItem;
 
+	        ViewModel.SetSubscription(OnNavigationChange);
             return view;
         }
 
-        public bool OnNavigationItemSelected(IMenuItem menuItem)
+		public bool OnNavigationItemSelected(IMenuItem menuItem)
         {
 			MarkSelectedMenuItem(menuItem);
             Navigate(menuItem.ItemId);
@@ -57,6 +61,12 @@ namespace PassTheBarrier.Fragments
 
 		    _previousMenuItem = menuItem;
 		}
+
+	    private void OnNavigationChange(NavigationMessage message)
+	    {
+		    var currentFragment = (MvxFragment)this.FragmentManager.Fragments.LastOrDefault();
+		    Navigate(currentFragment.ViewModel);
+	    }
 
         private async Task Navigate(int itemId)
         {
@@ -82,5 +92,23 @@ namespace PassTheBarrier.Fragments
                     break;
             }
         }
+
+	    private void Navigate(IMvxViewModel viewModel)
+	    {
+		    var type = viewModel.GetType();
+
+		    if (type == typeof(HomeViewModel))
+		    {
+			    var homeMenuItem = _navigationView.Menu.FindItem(Resource.Id.nav_home);
+			    homeMenuItem.SetCheckable(true);
+			    homeMenuItem.SetChecked(true);
+			}
+		    else if (type == typeof(AddressBookViewModel))
+		    {
+			    var addressBookItem = _navigationView.Menu.FindItem(Resource.Id.nav_addressBook);
+			    addressBookItem.SetCheckable(true);
+			    addressBookItem.SetChecked(true);
+			}
+	    }
     }
 }

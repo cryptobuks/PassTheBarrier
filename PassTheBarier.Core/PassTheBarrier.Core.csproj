@@ -86,6 +86,7 @@
     <Compile Include="Logic\Utils\IAppInfo.cs" />
     <Compile Include="Logic\Utils\NumberPrefixProvider.cs" />
     <Compile Include="Messenger\BarrierMessage.cs" />
+    <Compile Include="Messenger\NavigationMessage.cs" />
     <Compile Include="Navigation\CleartStackPresentationBundle.cs" />
     <Compile Include="Logic\Utils\Constants.cs" />
     <Compile Include="Logic\Utils\ObservableDictionary.cs" />

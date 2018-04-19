@@ -137,7 +137,7 @@ namespace PassTheBarier.Core.ViewModels
 				_messenger.Publish(message);
 				_actionHelper.DisplayToast(Messages.BarrierSavedSuccessfully);
 
-				await _navigationService.Close(this);
+				GoBack();
 			}
 		}
 
@@ -153,11 +153,18 @@ namespace PassTheBarier.Core.ViewModels
 
 		    validator.AddRule(() => MessageText, 
 			    () => RuleResult.Assert(!string.IsNullOrWhiteSpace(MessageText), Messages.FieldRequired));
-
+			
 		    var result = validator.ValidateAll();
 		    Errors = result.AsObservableDictionary();
 
 		    return result.IsValid;
+		}
+
+	    //TODO: should be refactored
+		private async void GoBack()
+	    {
+		    await _navigationService.Close(this);
+		    _messenger.Publish(new NavigationMessage(this));
 		}
     }
 }
