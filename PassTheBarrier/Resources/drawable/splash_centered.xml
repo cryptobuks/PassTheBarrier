@@ -3,10 +3,10 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
   <item>
     <shape android:shape="rectangle">
-      <solid android:color="@color/primary_dark" />
+      <solid android:color="@color/primary" />
     </shape>
   </item>
   <item>
-    <bitmap android:gravity="center" android:src="@drawable/barrier_open_black_128dp" />
+    <bitmap android:gravity="center" android:src="@drawable/ic_barrier_open_black_200dp" />
   </item>
 </layer-list>
